@@ -1,0 +1,294 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Shopping Cart" %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+<script src="{% static 'js/cart_item.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="cart-container">
+    <!-- Cart Header -->
+    <div class="cart-header">
+        <h1 class="cart-title">🛒 {% trans "Your Shopping Cart" %}</h1>
+        <div class="cart-stats">
+            <span class="item-count">{{ cart.len }} {% trans "items" %}</span>
+            <span class="total-price">{% trans "Total" %}: ${{ cart.get_total_price_after_discount }}</span>
+        </div>
+    </div>
+
+    <!-- Empty State -->
+    {% if not cart %}
+    <div class="empty-cart">
+        <div class="empty-icon">🌸</div>
+        <h2>{% trans "Your cart is empty" %}</h2>
+        <p>{% trans "Discover amazing anime products and fill your cart with treasures!" %}</p>
+        <a href="{% url 'shop:product_list' %}" class="btn-primary">
+            🎌 {% trans "Start Shopping" %}
+        </a>
+    </div>
+    {% else %}
+    <!-- Cart Content -->
+    <div class="cart-content">
+        <!-- Cart Items -->
+        <div class="cart-items">
+            {% for item in cart %}
+            <div class="cart-item" data-item-id="{{ item.id }}">
+                <div class="item-image">
+                    <img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'img/no_img.jpg' %}{% endif %}" alt="{{ item.product.name }}">
+                </div>
+
+                <div class="item-details">
+                    <h3 class="item-name">{{ item.product.name }}</h3>
+                    <p class="item-category">{{ item.product.category.name }}</p>
+                    <!---/>
+                    <div class="item-rating">
+                        <span class="stars">⭐️⭐️⭐️⭐️⭐️</span>
+                        <span class="rating-count">(128)</span>
+                    </div>
+                    <--->
+                </div>
+
+                <div class="item-price">
+                    <span class="current-price">${{ item.product.price }}</span>
+                    {% if item.product.old_price %}
+                    <span class="old-price">${{ item.product.old_price }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="item-quantity">
+                    <button id="remove_item_{{ item.product.id }}" class="quantity-btn minus" data-action="remove_item" data-id="{{ item.product.id }}">−</button>
+                    <input id="item-quantity_{{ item.product.id }}" type="number" class="quantity-input" value="{{ item.quantity }}" data-id="{{ item.product.id }}" data-oldValue="{{ item.quantity }}" min="1" max="99"
+                           data-item-id="{{ item.id }}">
+                    <button id="add_item_{{ item.product.id }}" class="quantity-btn plus" data-action="add_item" data-id="{{ item.product.id }}">+</button>
+                </div>
+
+                <div class="item-subtotal">
+                    <span id="subtotal-price_{{ item.product.id }}" class="subtotal-price">${{ item.total_price }}</span>
+                </div>
+                <form action="{% url 'cart:cart_remove' item.product.id %}" method="post">
+                    {% csrf_token  %}
+                    <button type="submit" class="item-remove" data-item-id="{{ item.id }}">
+                    <span class="remove-icon">🗑️</span>
+                    </button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="cart-summary">
+            <div class="summary-card">
+                <h3>📋 {% trans "Order Summary" %}</h3>
+
+                <div class="summary-row">
+                    <span>{% trans "Subtotal" %}</span>
+                    <span class="summary-row-total-price">${{  cart.get_total_price }}</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>{% trans "Discount" %}</span>
+                    <span id="free-shipping" class="free-shipping">{{ cart.get_discount }}</span>
+                </div>
+
+                <div class="summary-row total">
+                    <span>{% trans "Total" %}</span>
+                    <span id="total-amount" class="total-amount">${{ cart.get_total_price_after_discount }}</span>
+                </div>
+
+                <form action="{% url 'orders:order_create' %}">
+                    <button class="checkout-btn wave-btn" >
+                        <span>🔒 {% trans "Proceed to Checkout" %}</span>
+                    </button>
+                </form>
+
+                <div class="continue-shopping">
+                    <a href="{% url 'shop:product_list' %}" class="continue-link">
+                        ← {% trans "Continue Shopping" %}
+                    </a>
+                </div>
+            </div>
+
+            <!-- Security Badges -->
+            <div class="security-badges">
+                <div class="badge-item">
+                    <span class="badge-icon">🔒</span>
+                    <span>{% trans "Secure Payment" %}</span>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-icon">🔄</span>
+                    <span>{% trans "Easy Returns" %}</span>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-icon">🚚</span>
+                    <span>{% trans "Fast Shipping" %}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recently Viewed -->
+    <div class="recently-viewed">
+        <h2>👀 {% trans "Maybe you like" %}</h2>
+        <div class="recent-items">
+            {% for product in recommended_products %}
+            <!-- Would be populated with actual recently viewed items -->
+            <div class="recent-item recommends">
+                <a href="{{ product.get_absolute_url }}" class="clear-a recommends-a"><img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_img.jpg' %}{% endif %}" alt="Product"></a>
+                <span>{{ product.name }}</span>
+            </div>
+
+
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Remove Item Modal -->
+<div class="modal" id="remove-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>🗑️ {% trans "Remove Item" %}</h2>
+        <p>{% trans "Are you sure you want to remove this item from your cart?" %}</p>
+        <div class="modal-actions">
+            <button class="btn-secondary cancel-remove">{% trans "Cancel" %}</button>
+            <button class="btn-primary confirm-remove">{% trans "Remove" %}</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block domready %}
+function add_item(e){
+        var element = this;
+        quantity = document.getElementById('item-quantity_' + element.dataset.id);
+        id = element.dataset.id;
+        // добавить тело запроса
+        var formData = new FormData();
+        formData.append('id', id);
+        formData.append('action', element.dataset.action);
+        formData.append('quantity', element.id == 'item-quantity' ? Number(quantity.value) - 1 : quantity.value);
+        options['body'] = formData;
+
+        //отправить http-Запрос
+        fetch(url, options).then(response => response.json())
+        .then(data => {
+            if (data['status'] == 'ok'){
+                quantity.dataset.oldvalue = quantity.value;
+                update_price(data['total_price'], data['discount'], data['final_price'], data['item_price'], element.dataset.id);
+                if (element.id !== 'item-quantity'){
+                    quantity.value = Number(quantity.value) + 1;
+
+                }
+            }
+        })
+    }
+
+function remove_item (e){
+        var element = this;
+        quantity = document.getElementById('item-quantity_' + element.dataset.id);
+
+        // добавить тело запроса
+        var formData = new FormData();
+        formData.append('id', element.dataset.id);
+        formData.append('action', element.dataset.action);
+        formData.append('quantity', element.id == 'item-quantity' ? Number(quantity.value) + 1 : quantity.value);
+        options['body'] = formData;
+
+        //отправить http-Запрос
+        fetch(url, options).then(response => response.json())
+        .then(data => {
+            if (data['status'] == 'ok'){
+                quantity.dataset.oldvalue = quantity.value;
+                update_price(data['total_price'], data['discount'], data['final_price'], data['item_price'], element.dataset.id);
+                if (element.id !== 'item-quantity'){
+                    quantity.value = Number(quantity.value) - 1;
+                }
+
+            }
+        })
+    }
+
+function update_quantity(e){
+    var element = this;
+    quantity = document.getElementById('item-quantity_' + element.dataset.id);
+    var formData = new FormData();
+    formData.append('id', element.dataset.id);
+    formData.append('action', element.dataset.action);
+    formData.append('quantity', quantity.value);
+    options['body'] = formData;
+
+    //отправить http-Запрос
+        fetch(url, options).then(response => response.json())
+        .then(data => {
+            if (data['status'] == 'ok'){
+                quantity.dataset.oldvalue = quantity.value;
+                quantity.value = quantity.value;
+                update_price(data['total_price'], data['discount'], data['final_price'], data['item_price'], element.dataset.id);
+
+            }
+        })
+}
+
+function update_price(total_price, discount, final_price, item_price, id){
+    console.log('update price');
+    document.querySelectorAll('.total-price').forEach( element => {
+        element.textContent = '{% trans "Total" %}: $' + String(total_price);
+    })
+
+    var element = document.getElementById('subtotal-price_' + String(id));
+    element.textContent = '$' + String(item_price);
+
+    document.querySelectorAll('summary-row-total-price').forEach( element => {
+        element.textContent = '$' + String(total_price);
+    });
+
+    document.querySelectorAll('free-shipping').forEach( element => {
+        element.textContent = '$' + String(discount);
+    });
+
+    element = document.getElementById('total-amount');
+    element.textContent = '$' + String(final_price);
+
+}
+
+const url = '{% url "cart:cart_add_js" %}';
+var options = {
+        method: 'POST',
+        headers: {'X-CSRFToken': csrftoken},
+        mode: 'same-origin'
+    }
+
+document.querySelectorAll('.quantity-input').forEach(element => {
+    element.addEventListener('change', function(e){
+        var input = this;
+
+        if (input.value - input.dataset.oldvalue == 1){
+            input.dataset.action = 'add_item';
+            add_item.call(this);
+        }
+
+        else if (input.value - input.dataset.oldvalue == -1){
+            input.dataset.action = 'add_item';
+            add_item.call(this);
+        }
+
+        else {
+            input.dataset.action = 'update_quantity';
+            update_quantity.call(this);
+        }
+
+    })
+})
+
+// кнопки + и -
+document.querySelectorAll('.plus').forEach(element => {element.addEventListener('click', add_item)});
+document.querySelectorAll('.minus').forEach(element => {element.addEventListener('click', remove_item)});
+
+
+
+{% endblock %}

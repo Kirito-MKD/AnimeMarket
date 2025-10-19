@@ -1,0 +1,267 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-13 14:18+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\shop\templates\shop\base.html:37
+msgid "Shop Categories"
+msgstr "Категории магазина"
+
+#: .\shop\templates\shop\base.html:43
+msgid "Events"
+msgstr "Coбытия"
+
+#: .\shop\templates\shop\base.html:75
+#: .\shop\templates\shop\product\detail.html:24
+msgid "Shop"
+msgstr "Магазин"
+
+#: .\shop\templates\shop\base.html:77
+msgid "Figures & Collectibles"
+msgstr "Фигурки и Коллекционные предметы"
+
+#: .\shop\templates\shop\base.html:78
+msgid "Manga & Books"
+msgstr "Манга и Книги"
+
+#: .\shop\templates\shop\base.html:79
+msgid "Apparel & Cosplay"
+msgstr "Одежда и Косплей"
+
+#: .\shop\templates\shop\base.html:80
+msgid "Gaming & Tech"
+msgstr "Игры и Техника"
+
+#: .\shop\templates\shop\base.html:84
+msgid "Customer Care"
+msgstr "Забота о клиентах"
+
+#: .\shop\templates\shop\base.html:86
+msgid "Contact Us"
+msgstr "Свяжитесь с нами"
+
+#: .\shop\templates\shop\base.html:87
+msgid "Shipping Info"
+msgstr "Информация о доставке"
+
+#: .\shop\templates\shop\base.html:88
+msgid "Returns"
+msgstr "Возвраты"
+
+#: .\shop\templates\shop\base.html:89
+msgid "FAQ"
+msgstr "Часто задаваемые вопросы"
+
+#: .\shop\templates\shop\base.html:93
+msgid "About"
+msgstr "О нас"
+
+#: .\shop\templates\shop\base.html:95
+msgid "Our Story"
+msgstr "Наша история"
+
+#: .\shop\templates\shop\base.html:96
+msgid "Careers"
+msgstr "Карьера"
+
+#: .\shop\templates\shop\base.html:97
+msgid "Press"
+msgstr "Пресса"
+
+#: .\shop\templates\shop\base.html:98
+msgid "Blog"
+msgstr "Блог"
+
+#: .\shop\templates\shop\base.html:102
+msgid "Connect"
+msgstr "Связь"
+
+#: .\shop\templates\shop\base.html:113
+msgid "© 2024 AnimeMarket. Made with 💕 for anime lovers worldwide."
+msgstr "© 2024 AnimeMarket. Сделано с 💕 для любителей аниме по всему миру."
+
+#: .\shop\templates\shop\product\detail.html:22
+msgid "Home"
+msgstr "Главная"
+
+#: .\shop\templates\shop\product\detail.html:40
+msgid "Premium Quality"
+msgstr "Высокое качество"
+
+#: .\shop\templates\shop\product\detail.html:78
+msgid "Free shipping over 10"
+msgstr "Бесплатная доставка от 10$"
+
+#: .\shop\templates\shop\product\detail.html:82
+msgid "In Stock - Ready to Ship"
+msgstr "В наличии - Готов к отправке"
+
+#: .\shop\templates\shop\product\detail.html:86
+msgid "30-day return policy"
+msgstr "30-дневная политика возврата"
+
+#: .\shop\templates\shop\product\detail.html:96
+msgid "Quantity:"
+msgstr "Количество:"
+
+#: .\shop\templates\shop\product\detail.html:120
+#: .\shop\templates\shop\product\detail.html:215
+msgid "Add to Cart"
+msgstr "Добавить в корзину"
+
+#: .\shop\templates\shop\product\detail.html:132
+msgid "Secure Payment"
+msgstr "Безопасная оплата"
+
+#: .\shop\templates\shop\product\detail.html:136
+msgid "Fast Shipping"
+msgstr "Быстрая доставка"
+
+#: .\shop\templates\shop\product\detail.html:140
+msgid "Easy Returns"
+msgstr "Легкий возврат"
+
+#: .\shop\templates\shop\product\detail.html:149
+msgid "Description"
+msgstr "Описание"
+
+#: .\shop\templates\shop\product\detail.html:162
+msgid "Material"
+msgstr "Материал"
+
+#: .\shop\templates\shop\product\detail.html:163
+msgid "Premium PVC"
+msgstr "Качественный ПВХ"
+
+#: .\shop\templates\shop\product\detail.html:166
+msgid "Height"
+msgstr "Высота"
+
+#: .\shop\templates\shop\product\detail.html:170
+msgid "Weight"
+msgstr "Вес"
+
+#: .\shop\templates\shop\product\detail.html:174
+msgid "Series"
+msgstr "Серия"
+
+#: .\shop\templates\shop\product\detail.html:182
+msgid "Shipping Information"
+msgstr "Информация о доставке"
+
+#: .\shop\templates\shop\product\detail.html:184
+msgid "Free shipping on orders over 2000$"
+msgstr "Бесплатная доставка для заказов свыше 2000$"
+
+#: .\shop\templates\shop\product\detail.html:185
+msgid "Standard delivery: 3-5 business days"
+msgstr "Стандартная доставка: 3-5 рабочих дней"
+
+#: .\shop\templates\shop\product\detail.html:186
+msgid "Express delivery available"
+msgstr "Доступна экспресс-доставка"
+
+#: .\shop\templates\shop\product\detail.html:187
+msgid "International shipping available"
+msgstr "Доступна международная доставка"
+
+#: .\shop\templates\shop\product\detail.html:198
+msgid "You Might Also Like"
+msgstr "Вам также может понравиться"
+
+#: .\shop\templates\shop\product\detail.html:199
+msgid "Discover more amazing anime treasures"
+msgstr "Откройте для себя больше удивительных аниме-сокровищ"
+
+#: .\shop\templates\shop\product\detail.html:208
+msgid "Quick View"
+msgstr ""
+
+#: .\shop\templates\shop\product\detail.html:227
+msgid "Added to Cart!"
+msgstr "Добавлено в корзину!"
+
+#: .\shop\templates\shop\product\detail.html:228
+msgid "The item has been successfully added to your shopping cart."
+msgstr "Товар был успешно добавлен в вашу корзину."
+
+#: .\shop\templates\shop\product\detail.html:231
+msgid "View Cart"
+msgstr "Просмотреть корзину"
+
+#: .\shop\templates\shop\product\detail.html:234
+msgid "Continue Shopping"
+msgstr "Продолжить покупки"
+
+#: .\shop\templates\shop\product\list.html:10
+msgid "Products"
+msgstr "Товары"
+
+#: .\shop\templates\shop\product\list.html:18
+#, fuzzy
+#| msgid "Categories"
+msgid "Filter Categories"
+msgstr "Категории"
+
+#: .\shop\templates\shop\product\list.html:25
+#: .\shop\templates\shop\product\list.html:49
+msgid "Categories"
+msgstr "Категории"
+
+#: .\shop\templates\shop\product\list.html:32
+#: .\shop\templates\shop\product\list.html:53
+#: .\shop\templates\shop\product\list.html:70
+msgid "All Products"
+msgstr "Все товары"
+
+#: .\shop\templates\shop\product\list.html:94
+msgid "View Details"
+msgstr "Просмотреть детали"
+
+#: .\shop\templates\shop\product\list.html:101
+msgid "No products found"
+msgstr "Товары не найдены"
+
+#: .\shop\templates\shop\product\list.html:102
+msgid "Check back later for new arrivals!"
+msgstr "Загляните позже, чтобы увидеть новинки!"
+
+#: .\shop\templates\shop\product\mainPage.html:10
+msgid "🌸 AnimeMarket - Your Gateway to Anime Treasures"
+msgstr "🌸 AnimeMarket - Ваш путь к аниме-сокровищам"
+
+#: .\shop\templates\shop\product\mainPage.html:60
+msgid "Shop by Category"
+msgstr "Покупки по категориям"
+
+#: .\shop\templates\shop\product\mainPage.html:61
+msgid "Discover your passion"
+msgstr "Откройте свою страсть"
+
+#: .\shop\templates\shop\product\mainPage.html:88
+msgid "Learn More"
+msgstr "Узнать больше"
+
+#: .\shop\templates\shop\recommendations.html:5
+msgid "May be you like:"
+msgstr "Вам может понравиться:"
+
+#~ msgid "Best Products"
+#~ msgstr "Лучшие товары"

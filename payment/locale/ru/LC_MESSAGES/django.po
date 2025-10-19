@@ -1,0 +1,272 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-12 08:48+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\payment\templates\payment\canceled.html:5
+#: .\payment\templates\payment\canceled.html:15
+msgid "Payment Failed"
+msgstr "Оплата не удалась"
+
+#: .\payment\templates\payment\canceled.html:21
+msgid "We're sorry, your payment could not be processed"
+msgstr "Извините, вашу оплату не удалось обработать"
+
+#: .\payment\templates\payment\canceled.html:22
+msgid ""
+"There was an issue processing your payment. Please check your payment "
+"details and try again."
+msgstr ""
+"Возникла проблема с обработкой вашей оплаты. Пожалуйста, проверьте данные и "
+"попробуйте снова."
+
+#: .\payment\templates\payment\canceled.html:26
+msgid "Try Again"
+msgstr "Попробовать снова"
+
+#: .\payment\templates\payment\canceled.html:29
+#: .\payment\templates\payment\completed.html:116
+msgid "Continue Shopping"
+msgstr "Продолжить покупки"
+
+#: .\payment\templates\payment\canceled.html:34
+msgid "Need Help?"
+msgstr "Нужна помощь?"
+
+#: .\payment\templates\payment\canceled.html:35
+msgid "If you continue to experience issues, please contact our support team."
+msgstr ""
+"Если проблемы сохраняются, пожалуйста, свяжитесь с нашей службой поддержки."
+
+#: .\payment\templates\payment\canceled.html:37
+msgid "Contact Support"
+msgstr "Связаться с поддержкой"
+
+#: .\payment\templates\payment\canceled.html:46
+msgid "Secure Payment"
+msgstr "Безопасная оплата"
+
+#: .\payment\templates\payment\canceled.html:50
+msgid "Easy Returns"
+msgstr "Легкий возврат"
+
+#: .\payment\templates\payment\canceled.html:54
+msgid "Fast Shipping"
+msgstr "Быстрая доставка"
+
+#: .\payment\templates\payment\completed.html:5
+msgid "Order Complete - AnimeMarket"
+msgstr "Заказ завершен - AnimeMarket"
+
+#: .\payment\templates\payment\completed.html:17
+#: .\payment\templates\payment\process.html:17
+msgid "Cart"
+msgstr "Корзина"
+
+#: .\payment\templates\payment\completed.html:21
+#: .\payment\templates\payment\process.html:21
+msgid "Details"
+msgstr "Детали"
+
+#: .\payment\templates\payment\completed.html:25
+#: .\payment\templates\payment\process.html:25
+msgid "Payment"
+msgstr "Оплата"
+
+#: .\payment\templates\payment\completed.html:29
+#: .\payment\templates\payment\process.html:29
+msgid "Complete"
+msgstr "Завершено"
+
+#: .\payment\templates\payment\completed.html:47
+msgid "Thank You for Your Order!"
+msgstr "Спасибо за ваш заказ!"
+
+#: .\payment\templates\payment\completed.html:54
+msgid "Payment Successful"
+msgstr "Оплата прошла успешно"
+
+#: .\payment\templates\payment\completed.html:56
+msgid "Payment After Receiving"
+msgstr "Оплата при получении"
+
+#: .\payment\templates\payment\completed.html:64
+msgid "Order Number"
+msgstr "Номер заказа"
+
+#: .\payment\templates\payment\completed.html:68
+msgid "Order Date"
+msgstr "Дата заказа"
+
+#: .\payment\templates\payment\completed.html:72
+msgid "Total Amount"
+msgstr "Общая сумма"
+
+#: .\payment\templates\payment\completed.html:80
+msgid ""
+"Your order has been confirmed and will be shipped soon. We'll send you a "
+"tracking number once your package is on its way!"
+msgstr ""
+"Ваш заказ подтвержден и скоро будет отправлен. Мы вышлем вам номер для "
+"отслеживания, как только посылка будет в пути!"
+
+#: .\payment\templates\payment\completed.html:81
+msgid ""
+"Thank you for choosing AnimeMarket! We hope you love your anime treasures! 🌸"
+msgstr ""
+"Благодарим за выбор AnimeMarket! Надеемся, вы будете в восторге от своих "
+"аниме-сокровищ! 🌸"
+
+#: .\payment\templates\payment\completed.html:87
+msgid "What's Next?"
+msgstr "Что дальше?"
+
+#: .\payment\templates\payment\completed.html:92
+msgid "Order Confirmation"
+msgstr "Подтверждение заказа"
+
+#: .\payment\templates\payment\completed.html:93
+msgid "Check your email for order details and receipt"
+msgstr "Проверьте свою электронную почту для получения деталей заказа и чека"
+
+#: .\payment\templates\payment\completed.html:99
+msgid "Shipping Updates"
+msgstr "Обновления доставки"
+
+#: .\payment\templates\payment\completed.html:100
+msgid "We'll notify you when your order ships"
+msgstr "Мы уведомим вас, когда заказ будет отправлен"
+
+#: .\payment\templates\payment\completed.html:106
+msgid "Track Your Order"
+msgstr "Отслеживайте свой заказ"
+
+#: .\payment\templates\payment\completed.html:107
+msgid "Use your order number to track delivery"
+msgstr "Используйте номер заказа для отслеживания доставки"
+
+#: .\payment\templates\payment\completed.html:122
+msgid "Need help with your order?"
+msgstr "Нужна помощь с вашим заказом?"
+
+#: .\payment\templates\payment\completed.html:124
+msgid "Contact our support team"
+msgstr "Свяжитесь с нашей службой поддержки"
+
+#: .\payment\templates\payment\process.html:5
+msgid "Payment - Aincrad Shop"
+msgstr "Оплата - Aincrad Shop"
+
+#: .\payment\templates\payment\process.html:36
+msgid "Order Summary"
+msgstr "Сводка заказа"
+
+#: .\payment\templates\payment\process.html:40
+msgid "Customer Information"
+msgstr "Информация о клиенте"
+
+#: .\payment\templates\payment\process.html:43
+msgid "Name"
+msgstr "Имя"
+
+#: .\payment\templates\payment\process.html:47
+msgid "Email"
+msgstr "Email"
+
+#: .\payment\templates\payment\process.html:55
+msgid "Shipping Address"
+msgstr "Адрес доставки"
+
+#: .\payment\templates\payment\process.html:64
+msgid "Order Items"
+msgstr "Позиции заказа"
+
+#: .\payment\templates\payment\process.html:77
+msgid "Countity"
+msgstr "Количество"
+
+#: .\payment\templates\payment\process.html:87
+msgid "Subtotal"
+msgstr "Промежуточный итог"
+
+#: .\payment\templates\payment\process.html:91
+msgid "Shipping"
+msgstr "Доставка"
+
+#: .\payment\templates\payment\process.html:92
+msgid "FREE"
+msgstr "БЕСПЛАТНО"
+
+#: .\payment\templates\payment\process.html:95
+msgid "Discount"
+msgstr "Скидка"
+
+#: .\payment\templates\payment\process.html:99
+msgid "Total"
+msgstr "Итого"
+
+#: .\payment\templates\payment\process.html:108
+msgid "Select Payment Method"
+msgstr "Выберите способ оплаты"
+
+#: .\payment\templates\payment\process.html:119
+msgid "Credit/Debit Card"
+msgstr "Кредитная/Дебетовая карта"
+
+#: .\payment\templates\payment\process.html:135
+msgid "Cash"
+msgstr "Наличные"
+
+#: .\payment\templates\payment\process.html:148
+msgid "Back to Details"
+msgstr "Назад к деталям"
+
+#: .\payment\templates\payment\process.html:151
+#: .\payment\templates\payment\process.html:339
+msgid "Pay Now"
+msgstr "Оплатить сейчас"
+
+#: .\payment\templates\payment\process.html:163
+msgid "Processing payment..."
+msgstr "Обработка оплаты..."
+
+#: .\payment\templates\payment\process.html:289
+msgid "Redirecting"
+msgstr "Перенаправляем"
+
+#: .\payment\templates\payment\process.html:313
+msgid "Payment failed. Please try again."
+msgstr "Не удалось обработать ваш заказ. Попробуйте еще раз"
+
+#: .\payment\templates\payment\process.html:342
+msgid "Pay After Recieving "
+msgstr "Оплата при получении "
+
+#: .\payment\urls.py:10
+msgid "process/"
+msgstr "обработка/"
+
+#: .\payment\urls.py:11
+msgid "completed/<int:order_id>/"
+msgstr "завершен/<int:order_id>/"
+
+#: .\payment\urls.py:12
+msgid "canceled/"
+msgstr "отменен/"

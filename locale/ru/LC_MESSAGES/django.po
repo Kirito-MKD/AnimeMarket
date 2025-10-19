@@ -1,0 +1,542 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-12 08:48+0300\n"
+"PO-Revision-Date: 2025-09-20 21:49+0000\n"
+"Last-Translator:   <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: .\coupons\forms.py:6
+msgid "Coupon"
+msgstr "Купон"
+
+#: .\myshop\settings.py:140
+msgid "English"
+msgstr "Английский"
+
+#: .\myshop\settings.py:141
+msgid "Русский"
+msgstr "Русский"
+
+#: .\myshop\urls.py:30
+msgid "cart/"
+msgstr "корзина/"
+
+#: .\myshop\urls.py:31
+msgid "orders/"
+msgstr "заказы/"
+
+#: .\myshop\urls.py:32
+msgid "payment/"
+msgstr "оплата/"
+
+#: .\myshop\urls.py:33
+msgid "coupons/"
+msgstr "купоны/"
+
+#: .\myshop\urls.py:34
+msgid "search/"
+msgstr ""
+
+#: .\myshop\urls.py:36
+msgid "events/"
+msgstr "события/"
+
+#~ msgid "Quantity"
+#~ msgstr "Количество"
+
+#, fuzzy
+#~| msgid "Shipping Info"
+#~ msgid "Shopping Cart"
+#~ msgstr "Информация о доставке"
+
+#~ msgid "Your Shopping Cart"
+#~ msgstr "Ваша корзина"
+
+#~ msgid "items"
+#~ msgstr "товары"
+
+#~ msgid "Total"
+#~ msgstr "Итого"
+
+#~ msgid "Your cart is empty"
+#~ msgstr "Ваша корзина пуста"
+
+#~ msgid "Discover amazing anime products and fill your cart with treasures!"
+#~ msgstr ""
+#~ "Откройте для себя удивительные аниме-товары и наполните корзину "
+#~ "сокровищами!"
+
+#~ msgid "Start Shopping"
+#~ msgstr "Начать покупки"
+
+#~ msgid "Order Summary"
+#~ msgstr "Сводка заказа"
+
+#, fuzzy
+#~| msgid "Coupon"
+#~ msgid "Apply Coupon"
+#~ msgstr "Купон"
+
+#~ msgid "Applied"
+#~ msgstr "Применен"
+
+#~ msgid "Subtotal"
+#~ msgstr "Промежуточный итог"
+
+#~ msgid "Coupon Discount"
+#~ msgstr "Скидка по купону"
+
+#, fuzzy
+#~| msgid "Shipping Info"
+#~ msgid "Shipping"
+#~ msgstr "Информация о доставке"
+
+#~ msgid "Proceed to Checkout"
+#~ msgstr "Перейти к оформлению"
+
+#~ msgid "Continue Shopping"
+#~ msgstr "Продолжить покупки"
+
+#~ msgid "Secure Payment"
+#~ msgstr "Безопасная оплата"
+
+#, fuzzy
+#~| msgid "Returns"
+#~ msgid "Easy Returns"
+#~ msgstr "Возвраты"
+
+#, fuzzy
+#~| msgid "Shipping Info"
+#~ msgid "Fast Shipping"
+#~ msgstr "Информация о доставке"
+
+#, fuzzy
+#~| msgid "May be you like:"
+#~ msgid "Maybe you like"
+#~ msgstr "Вам может понравиться:"
+
+#~ msgid "Remove Item"
+#~ msgstr "Удалить товар"
+
+#~ msgid "Are you sure you want to remove this item from your cart?"
+#~ msgstr "Вы уверены, что хотите удалить этот товар из корзины?"
+
+#, fuzzy
+#~| msgid "canceled/"
+#~ msgid "Cancel"
+#~ msgstr "отменен/"
+
+#~ msgid "Remove"
+#~ msgstr "Удалить"
+
+#~ msgid "Apply Coupon Code"
+#~ msgstr "Применить код купона"
+
+#~ msgid "Enter your coupon code to get a discount on your order"
+#~ msgstr "Введите код купона, чтобы получить скидку на заказ"
+
+#~ msgid "Enter coupon code"
+#~ msgstr "Введите код купона"
+
+#~ msgid "Apply"
+#~ msgstr "Применить"
+
+#~ msgid "Discount"
+#~ msgstr "Скидка"
+
+#~ msgid "Payment Failed"
+#~ msgstr "Оплата не удалась"
+
+#~ msgid "We're sorry, your payment could not be processed"
+#~ msgstr "Извините, вашу оплату не удалось обработать"
+
+#~ msgid ""
+#~ "There was an issue processing your payment. Please check your payment "
+#~ "details and try again."
+#~ msgstr ""
+#~ "Возникла проблема с обработкой вашей оплаты. Пожалуйста, проверьте данные "
+#~ "и попробуйте снова."
+
+#~ msgid "Try Again"
+#~ msgstr "Попробовать снова"
+
+#~ msgid "Need Help?"
+#~ msgstr "Нужна помощь?"
+
+#~ msgid ""
+#~ "If you continue to experience issues, please contact our support team."
+#~ msgstr ""
+#~ "Если проблемы сохраняются, пожалуйста, свяжитесь с нашей службой "
+#~ "поддержки."
+
+#, fuzzy
+#~| msgid "Contact Us"
+#~ msgid "Contact Support"
+#~ msgstr "Свяжитесь с нами"
+
+#~ msgid "Order Complete - AnimeMarket"
+#~ msgstr "Заказ завершен - AnimeMarket"
+
+#~ msgid "Cart"
+#~ msgstr "Корзина"
+
+#, fuzzy
+#~| msgid "View Details"
+#~ msgid "Details"
+#~ msgstr "Просмотреть детали"
+
+#, fuzzy
+#~| msgid "payment/"
+#~ msgid "Payment"
+#~ msgstr "оплата/"
+
+#, fuzzy
+#~| msgid "completed/"
+#~ msgid "Complete"
+#~ msgstr "завершен/"
+
+#~ msgid "Thank You for Your Order!"
+#~ msgstr "Спасибо за ваш заказ!"
+
+#~ msgid "Payment Successful"
+#~ msgstr "Оплата прошла успешно"
+
+#~ msgid "Payment After Receiving"
+#~ msgstr "Оплата при получении"
+
+#~ msgid "Order Number"
+#~ msgstr "Номер заказа"
+
+#~ msgid "Order Date"
+#~ msgstr "Дата заказа"
+
+#~ msgid "Total Amount"
+#~ msgstr "Общая сумма"
+
+#~ msgid ""
+#~ "Your order has been confirmed and will be shipped soon. We'll send you a "
+#~ "tracking number once your package is on its way!"
+#~ msgstr ""
+#~ "Ваш заказ подтвержден и скоро будет отправлен. Мы вышлем вам номер для "
+#~ "отслеживания, как только посылка будет в пути!"
+
+#~ msgid ""
+#~ "Thank you for choosing AnimeMarket! We hope you love your anime "
+#~ "treasures! 🌸"
+#~ msgstr ""
+#~ "Благодарим за выбор AnimeMarket! Надеемся, вы будете в восторге от своих "
+#~ "аниме-сокровищ! 🌸"
+
+#~ msgid "What's Next?"
+#~ msgstr "Что дальше?"
+
+#~ msgid "Order Confirmation"
+#~ msgstr "Подтверждение заказа"
+
+#~ msgid "Check your email for order details and receipt"
+#~ msgstr ""
+#~ "Проверьте свою электронную почту для получения деталей заказа и чека"
+
+#, fuzzy
+#~| msgid "Shipping Info"
+#~ msgid "Shipping Updates"
+#~ msgstr "Информация о доставке"
+
+#~ msgid "We'll notify you when your order ships"
+#~ msgstr "Мы уведомим вас, когда заказ будет отправлен"
+
+#~ msgid "Track Your Order"
+#~ msgstr "Отслеживайте свой заказ"
+
+#~ msgid "Use your order number to track delivery"
+#~ msgstr "Используйте номер заказа для отслеживания доставки"
+
+#~ msgid "Need help with your order?"
+#~ msgstr "Нужна помощь с вашим заказом?"
+
+#~ msgid "Contact our support team"
+#~ msgstr "Свяжитесь с нашей службой поддержки"
+
+#~ msgid "Payment - Aincrad Shop"
+#~ msgstr "Оплата - Aincrad Shop"
+
+#, fuzzy
+#~| msgid "Customer Care"
+#~ msgid "Customer Information"
+#~ msgstr "Забота о клиентах"
+
+#~ msgid "Name"
+#~ msgstr "Имя"
+
+#~ msgid "Email"
+#~ msgstr "Email"
+
+#, fuzzy
+#~| msgid "Shipping Info"
+#~ msgid "Shipping Address"
+#~ msgstr "Информация о доставке"
+
+#~ msgid "Order Items"
+#~ msgstr "Позиции заказа"
+
+#~ msgid "FREE"
+#~ msgstr "БЕСПЛАТНО"
+
+#~ msgid "Select Payment Method"
+#~ msgstr "Выберите способ оплаты"
+
+#~ msgid "Credit/Debit Card"
+#~ msgstr "Кредитная/Дебетовая карта"
+
+#~ msgid "Cash"
+#~ msgstr "Наличные"
+
+#~ msgid "Back to Details"
+#~ msgstr "Назад к деталям"
+
+#~ msgid "Pay Now"
+#~ msgstr "Оплатить сейчас"
+
+#~ msgid "Processing payment..."
+#~ msgstr "Обработка оплаты..."
+
+#~ msgid "process/"
+#~ msgstr "обработка/"
+
+#~ msgid "completed/<int:order_id>/"
+#~ msgstr "завершен/<int:order_id>/"
+
+#~ msgid "canceled/"
+#~ msgstr "отменен/"
+
+#, fuzzy
+#~| msgid "Categories"
+#~ msgid "Shop Categories"
+#~ msgstr "Категории"
+
+#~ msgid "Events"
+#~ msgstr "События"
+
+#, fuzzy
+#~| msgid "Products"
+#~ msgid "Best Products"
+#~ msgstr "Товары"
+
+#~ msgid "Shop"
+#~ msgstr "Магазин"
+
+#~ msgid "Figures & Collectibles"
+#~ msgstr "Фигурки и Коллекционные предметы"
+
+#~ msgid "Manga & Books"
+#~ msgstr "Манга и Книги"
+
+#~ msgid "Apparel & Cosplay"
+#~ msgstr "Одежда и Косплей"
+
+#~ msgid "Gaming & Tech"
+#~ msgstr "Игры и Техника"
+
+#~ msgid "Customer Care"
+#~ msgstr "Забота о клиентах"
+
+#~ msgid "Contact Us"
+#~ msgstr "Свяжитесь с нами"
+
+#~ msgid "Shipping Info"
+#~ msgstr "Информация о доставке"
+
+#~ msgid "Returns"
+#~ msgstr "Возвраты"
+
+#~ msgid "FAQ"
+#~ msgstr "Часто задаваемые вопросы"
+
+#~ msgid "About"
+#~ msgstr "О нас"
+
+#~ msgid "Our Story"
+#~ msgstr "Наша история"
+
+#~ msgid "Careers"
+#~ msgstr "Карьера"
+
+#~ msgid "Press"
+#~ msgstr "Пресса"
+
+#~ msgid "Blog"
+#~ msgstr "Блог"
+
+#~ msgid "Connect"
+#~ msgstr "Связь"
+
+#~ msgid "© 2024 AnimeMarket. Made with 💕 for anime lovers worldwide."
+#~ msgstr "© 2024 AnimeMarket. Сделано с 💕 для любителей аниме по всему миру."
+
+#~ msgid "Home"
+#~ msgstr "Главная"
+
+#~ msgid "Premium Quality"
+#~ msgstr "Высокое качество"
+
+#~ msgid "Free shipping over 10"
+#~ msgstr "Бесплатная доставка от 10$"
+
+#~ msgid "In Stock - Ready to Ship"
+#~ msgstr "В наличии - Готов к отправке"
+
+#~ msgid "30-day return policy"
+#~ msgstr "30-дневная политика возврата"
+
+#, fuzzy
+#~| msgid "Quantity"
+#~ msgid "Quantity:"
+#~ msgstr "Количество"
+
+#, fuzzy
+#~| msgid "Add to cart"
+#~ msgid "Add to Cart"
+#~ msgstr "Добавить в корзину"
+
+#~ msgid "Description"
+#~ msgstr "Описание"
+
+#~ msgid "Material"
+#~ msgstr "Материал"
+
+#~ msgid "Premium PVC"
+#~ msgstr "Качественный ПВХ"
+
+#~ msgid "Height"
+#~ msgstr "Высота"
+
+#~ msgid "Weight"
+#~ msgstr "Вес"
+
+#, fuzzy
+#~| msgid "Categories"
+#~ msgid "Series"
+#~ msgstr "Категории"
+
+#, fuzzy
+#~| msgid "Shipping Info"
+#~ msgid "Shipping Information"
+#~ msgstr "Информация о доставке"
+
+#~ msgid "Free shipping on orders over 2000$"
+#~ msgstr "Бесплатная доставка для заказов свыше 2000$"
+
+#~ msgid "Standard delivery: 3-5 business days"
+#~ msgstr "Стандартная доставка: 3-5 рабочих дней"
+
+#~ msgid "Express delivery available"
+#~ msgstr "Доступна экспресс-доставка"
+
+#~ msgid "International shipping available"
+#~ msgstr "Доступна международная доставка"
+
+#~ msgid "You Might Also Like"
+#~ msgstr "Вам также может понравиться"
+
+#~ msgid "Discover more amazing anime treasures"
+#~ msgstr "Откройте для себя больше удивительных аниме-сокровищ"
+
+#, fuzzy
+#~| msgid "Add to cart"
+#~ msgid "Added to Cart!"
+#~ msgstr "Добавлено в корзину!"
+
+#~ msgid "The item has been successfully added to your shopping cart."
+#~ msgstr "Товар был успешно добавлен в вашу корзину."
+
+#~ msgid "View Cart"
+#~ msgstr "Просмотреть корзину"
+
+#~ msgid "Products"
+#~ msgstr "Товары"
+
+#~ msgid "Categories"
+#~ msgstr "Категории"
+
+#, fuzzy
+#~| msgid "Products"
+#~ msgid "All Products"
+#~ msgstr "Товары"
+
+#~ msgid "View Details"
+#~ msgstr "Просмотреть детали"
+
+#~ msgid "No products found"
+#~ msgstr "Товары не найдены"
+
+#~ msgid "Check back later for new arrivals!"
+#~ msgstr "Загляните позже, чтобы увидеть новинки!"
+
+#~ msgid "🌸 AnimeMarket - Your Gateway to Anime Treasures"
+#~ msgstr "🌸 AnimeMarket - Ваш путь к аниме-сокровищам"
+
+#~ msgid "Shop by Category"
+#~ msgstr "Покупки по категориям"
+
+#~ msgid "Discover your passion"
+#~ msgstr "Откройте свою страсть"
+
+#~ msgid "Learn More"
+#~ msgstr "Узнать больше"
+
+#~ msgid "May be you like:"
+#~ msgstr "Вам может понравиться:"
+
+#~ msgid "news/"
+#~ msgstr "новости/"
+
+#~ msgid "All"
+#~ msgstr "Все"
+
+#~ msgid "My shop"
+#~ msgstr "Мой магазин"
+
+#~ msgid "LANGUAGE"
+#~ msgstr "ЯЗЫК"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "                                %(items)s item, %(total)s$\n"
+#~ "                            "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                                %(items)s items, %(total)s$\n"
+#~ "                            "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "                                %(items)s товар, %(total)s$\n"
+#~ "                            "
+#~ msgstr[1] ""
+#~ "\n"
+#~ "                                %(items)s товара, %(total)s$\n"
+#~ "                            "
+#~ msgstr[2] ""
+#~ "\n"
+#~ "                                %(items)s товаров, %(total)s$\n"
+#~ "                            "
+#~ msgstr[3] ""
+#~ "\n"
+#~ "                                %(items)s товара, %(total)s$\n"
+#~ "                            "

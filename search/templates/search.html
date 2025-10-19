@@ -1,0 +1,156 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Search Products" %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="search-container-SEARCH">
+    <!-- Поисковая строка -->
+    <div class="search-hero-SEARCH">
+        <div class="search-header-SEARCH">
+            <h1 class="search-title-SEARCH">🔍 {% trans "Find Your Anime Treasures" %}</h1>
+            <p class="search-subtitle-SEARCH">{% trans "Discover amazing anime products and events from our collection" %}</p>
+        </div>
+
+        <div class="search-form-container-SEARCH">
+            <form method="post" action="{% url 'search:search' %}" class="search-form-SEARCH" id="search-form-SEARCH">
+                <div class="search-input-group-SEARCH">
+                    <input type="text" 
+                           name="search"
+                           id="search-input-SEARCH"
+                           placeholder="{% trans 'Search for figures, manga, events...' %}"
+                           class="search-input-SEARCH"
+                           value="{{ query|default:'' }}"
+                           autocomplete="off">
+                    <button type="submit" class="search-btn-SEARCH" id="search-btn-SEARCH">
+                        <span class="search-icon-SEARCH">🔍</span>
+                        <span class="search-text-SEARCH">{% trans "Search" %}</span>
+                    </button>
+                </div>
+                
+                <div class="search-type-toggle-SEARCH">
+                    <label class="toggle-label-SEARCH">
+                        <input type="radio" name="type_search" value="all" {% if not type_search or type_search == 'all' %}checked{% endif %}>
+                        <span class="toggle-option-SEARCH">{% trans "All" %}</span>
+                    </label>
+                    <label class="toggle-label-SEARCH">
+                        <input type="radio" name="type_search" value="products" {% if type_search == 'products' %}checked{% endif %}>
+                        <span class="toggle-option-SEARCH">{% trans "Products" %}</span>
+                    </label>
+                    <label class="toggle-label-SEARCH">
+                        <input type="radio" name="type_search" value="events" {% if type_search == 'events' %}checked{% endif %}>
+                        <span class="toggle-option-SEARCH">{% trans "Events" %}</span>
+                    </label>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Декоративная анимация -->
+    <div class="decoration-animation-SEARCH">
+        <div class="floating-item-SEARCH floating-1-SEARCH">🌸</div>
+        <div class="floating-item-SEARCH floating-2-SEARCH">⚓</div>
+        <div class="floating-item-SEARCH floating-3-SEARCH">🎪</div>
+        <div class="floating-item-SEARCH floating-4-SEARCH">📚</div>
+        <div class="floating-item-SEARCH floating-5-SEARCH">🎌</div>
+        <div class="floating-item-SEARCH floating-6-SEARCH">🛒</div>
+    </div>
+
+    <!-- Результаты поиска -->
+    <div class="search-results-section-SEARCH">
+        {% if results %}
+        <div class="results-header-SEARCH">
+            <div class="results-info-SEARCH">
+                <h2 class="results-title-SEARCH">{% trans "Search Results" %}</h2>
+                <p class="results-count-SEARCH">
+                    {% trans "Found" %} <span class="results-number-SEARCH">
+                    {{ results|length }}</span>
+                    <span class="results-type-text-SEARCH">{% trans "results" %}</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="results-container-SEARCH">
+            <!-- Пример результата продукта -->
+            {% for result in results %}
+
+                {% if result.model_type == 'Product' %}
+                    <div class="result-item-SEARCH">
+                        <div class="result-header-SEARCH">
+                            <span class="result-type-SEARCH product-SEARCH">
+                                🛍️ {% trans "Product" %}
+                            </span>
+                            <h3 class="result-title-SEARCH">{{ result.name }}</h3>
+                        </div>
+
+                        <div class="result-content-SEARCH">
+                            <p>{{ result.description|truncatechars:10}}</p>
+                        </div>
+
+                        <div class="result-actions-SEARCH">
+                            <div class="result-meta-SEARCH">
+                                <span class="result-category-SEARCH">{{ result.category.name }}</span>
+                                <span class="result-price-SEARCH">💰 ${{ result.price|floatformat:2 }}</span>
+                            </div>
+
+                            <a href="{{ result.get_absolute_url }}" class="detail-btn-SEARCH">
+                                🛒 {% trans "View Product" %} →
+                            </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="result-item-SEARCH">
+                        <div class="result-header-SEARCH">
+                            <span class="result-type-SEARCH event-SEARCH">
+                                🎪 {% trans "Event" %}
+                            </span>
+                            <h3 class="result-title-SEARCH">{{ result.title }}</h3>
+                        </div>
+
+                        <div class="result-content-SEARCH">
+                            <p>{{ result.description|truncatechars:10 }}</p>
+                        </div>
+
+                        <div class="result-actions-SEARCH">
+                            <div class="result-meta-SEARCH">
+                                <span class="result-category-SEARCH">Events</span>
+                                <span class="result-date-SEARCH">📅 {{result.start_event}}</span>
+                            </div>
+
+                            <a href="{{result.get_absolute_url}}" class="detail-btn-SEARCH">
+                                🎪 {% trans "Event Details" %} →
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+
+        {% else %}
+
+            <!-- Состояние пустого результата -->
+            <div class="empty-state-SEARCH">
+                <div class="empty-animation-SEARCH">
+                    <div class="empty-icon-SEARCH">🔍</div>
+                    <div class="empty-sakura-SEARCH">🌸</div>
+                    <div class="empty-sakura-SEARCH">🌸</div>
+                </div>
+                <h3 class="empty-title-SEARCH">{% trans "No results found" %}</h3>
+                <p class="empty-text-SEARCH">{% trans "Try different keywords or browse our categories" %}</p>
+                <a href="{% url 'shop:product_list' %}" class="reset-search-btn-SEARCH">
+                    {% trans "Browse All Products" %}
+                </a>
+            </div>
+            {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_script %}
+<script src="{% static 'js/search.js' %}"></script>
+{% endblock %}

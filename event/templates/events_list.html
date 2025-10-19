@@ -1,0 +1,87 @@
+{% extends  "shop/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block extra_head %}
+    <link href="{% static 'css/product_list.css' %}" rel="stylesheet">
+    <link href="{% static 'css/news-carousel.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/pagination.css' %}">
+{% endblock %}
+
+{% block title %}
+    {% if category %}{{ events.name }}{% else %}{% trans "Events" %}{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="products-container">
+    <!-- Sidebar -->
+    <aside class="products-sidebar">
+        <h3 class="sidebar-title">{% trans "Events" %}</h3>
+        <ul class="category-list">
+            <li class="category-item {% if not category %}selected{% endif %}">
+                <a href="{% url 'events:event_list' %}" class="category-link">
+                    {% trans "All Events" %}
+                </a>
+            </li>
+            {% for c in categories %}
+                <li class="category-item {% if category.slug == c.slug %}selected{% endif %}">
+                    <a href="{{ c.get_absolute_url }}" class="category-link">
+                        {{ c.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="products-main">
+        <div class="category-header">
+            <h1 class="category-title">
+                {% if category %}{{ category.name }}{% else %}{% trans "All Events" %}{% endif %}
+            </h1>
+        </div>
+
+        <div class="products-grid">
+            {% for event in page.object_list %}
+                <div class="news-card">
+                    <div class="news-card-header">
+                        <span class="news-date">{{ event.created }}</span>
+                        <span class="news-category">{{ event.category }}</span>
+                    </div>
+                    <h3 class="news-card-title">{{ event.title }}</h3>
+                    <p class="news-card-content">{{ event.description|truncatechars:30}}</p>
+                    <div class="news-card-footer">
+                        <a href="{{ event.get_absolute_url }}" class="news-read-more">{{ event.buttonText }}</a>
+                        <div class="news-tags">
+                            <span class="news-tag">#{{ event.tags.first }}</span>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="empty-state">
+                    <div>🌸</div>
+                    <h3>{% trans "No Events found" %}</h3>
+                    <p>{% trans "Check back later for new events!" %}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="sakura-pagination" id="pagination"></div>
+    </main>
+</div>
+<input type="hidden" id="currentPage" name="currentPage" value="{{ page.number }}">
+<input type="hidden" id="totalPages" name="totalPages" value="{{ page.paginator.num_pages }}">
+{% if page.has_next %}
+    <input type="hidden" id="nextPage" name="nextPage" value="?page={{ page.next_page_number }}">
+{% endif %}
+
+{% if page.has_previous %}
+    <input type="hidden" id="prevPage" name="prevPage" value="?page={{ page.previous_page_number }}">
+{% endif %}
+
+{% endblock %}
+
+
+{% block extra_script %}
+    <script src="{% static 'js/pagination.js' %}"></script>
+{% endblock %}

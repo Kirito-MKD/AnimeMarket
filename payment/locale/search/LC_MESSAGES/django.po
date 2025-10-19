@@ -1,0 +1,262 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-12 08:47+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\payment\templates\payment\canceled.html:5
+#: .\payment\templates\payment\canceled.html:15
+msgid "Payment Failed"
+msgstr ""
+
+#: .\payment\templates\payment\canceled.html:21
+msgid "We're sorry, your payment could not be processed"
+msgstr ""
+
+#: .\payment\templates\payment\canceled.html:22
+msgid ""
+"There was an issue processing your payment. Please check your payment "
+"details and try again."
+msgstr ""
+
+#: .\payment\templates\payment\canceled.html:26
+msgid "Try Again"
+msgstr ""
+
+#: .\payment\templates\payment\canceled.html:29
+#: .\payment\templates\payment\completed.html:116
+msgid "Continue Shopping"
+msgstr ""
+
+#: .\payment\templates\payment\canceled.html:34
+msgid "Need Help?"
+msgstr ""
+
+#: .\payment\templates\payment\canceled.html:35
+msgid "If you continue to experience issues, please contact our support team."
+msgstr ""
+
+#: .\payment\templates\payment\canceled.html:37
+msgid "Contact Support"
+msgstr ""
+
+#: .\payment\templates\payment\canceled.html:46
+msgid "Secure Payment"
+msgstr ""
+
+#: .\payment\templates\payment\canceled.html:50
+msgid "Easy Returns"
+msgstr ""
+
+#: .\payment\templates\payment\canceled.html:54
+msgid "Fast Shipping"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:5
+msgid "Order Complete - AnimeMarket"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:17
+#: .\payment\templates\payment\process.html:17
+msgid "Cart"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:21
+#: .\payment\templates\payment\process.html:21
+msgid "Details"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:25
+#: .\payment\templates\payment\process.html:25
+msgid "Payment"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:29
+#: .\payment\templates\payment\process.html:29
+msgid "Complete"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:47
+msgid "Thank You for Your Order!"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:54
+msgid "Payment Successful"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:56
+msgid "Payment After Receiving"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:64
+msgid "Order Number"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:68
+msgid "Order Date"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:72
+msgid "Total Amount"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:80
+msgid ""
+"Your order has been confirmed and will be shipped soon. We'll send you a "
+"tracking number once your package is on its way!"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:81
+msgid ""
+"Thank you for choosing AnimeMarket! We hope you love your anime treasures! 🌸"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:87
+msgid "What's Next?"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:92
+msgid "Order Confirmation"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:93
+msgid "Check your email for order details and receipt"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:99
+msgid "Shipping Updates"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:100
+msgid "We'll notify you when your order ships"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:106
+msgid "Track Your Order"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:107
+msgid "Use your order number to track delivery"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:122
+msgid "Need help with your order?"
+msgstr ""
+
+#: .\payment\templates\payment\completed.html:124
+msgid "Contact our support team"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:5
+msgid "Payment - Aincrad Shop"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:36
+msgid "Order Summary"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:40
+msgid "Customer Information"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:43
+msgid "Name"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:47
+msgid "Email"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:55
+msgid "Shipping Address"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:64
+msgid "Order Items"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:77
+msgid "Countity"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:87
+msgid "Subtotal"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:91
+msgid "Shipping"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:92
+msgid "FREE"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:95
+msgid "Discount"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:99
+msgid "Total"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:108
+msgid "Select Payment Method"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:119
+msgid "Credit/Debit Card"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:135
+msgid "Cash"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:148
+msgid "Back to Details"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:151
+#: .\payment\templates\payment\process.html:339
+msgid "Pay Now"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:163
+msgid "Processing payment..."
+msgstr ""
+
+#: .\payment\templates\payment\process.html:289
+msgid "Redirecting"
+msgstr ""
+
+#: .\payment\templates\payment\process.html:313
+msgid "Payment failed. Please try again."
+msgstr ""
+
+#: .\payment\templates\payment\process.html:342
+msgid "Pay After Recieving "
+msgstr ""
+
+#: .\payment\urls.py:10
+msgid "process/"
+msgstr ""
+
+#: .\payment\urls.py:11
+msgid "completed/<int:order_id>/"
+msgstr ""
+
+#: .\payment\urls.py:12
+msgid "canceled/"
+msgstr ""

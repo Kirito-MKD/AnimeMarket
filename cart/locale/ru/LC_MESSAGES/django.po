@@ -1,0 +1,139 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-02 16:59+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\cart\forms.py:11
+msgid "Quantity"
+msgstr "Количество"
+
+#: .\cart\templates\cart\detail.html:5 .\cart\templates\cart\draft.html:5
+msgid "Shopping Cart"
+msgstr "Корзина покупок"
+
+#: .\cart\templates\cart\detail.html:18 .\cart\templates\cart\draft.html:16
+msgid "Your Shopping Cart"
+msgstr "Ваша корзина покупок"
+
+#: .\cart\templates\cart\detail.html:20 .\cart\templates\cart\draft.html:18
+msgid "items"
+msgstr "товары"
+
+#: .\cart\templates\cart\detail.html:21 .\cart\templates\cart\detail.html:125
+#: .\cart\templates\cart\detail.html:294 .\cart\templates\cart\draft.html:19
+#: .\cart\templates\cart\draft.html:98 .\cart\templates\cart\draft.html:240
+msgid "Total"
+msgstr "Итого"
+
+#: .\cart\templates\cart\detail.html:29 .\cart\templates\cart\draft.html:27
+msgid "Your cart is empty"
+msgstr "Ваша корзина пуста"
+
+#: .\cart\templates\cart\detail.html:30 .\cart\templates\cart\draft.html:28
+msgid "Discover amazing anime products and fill your cart with treasures!"
+msgstr "Откройте для себя удивительные аниме-товары и наполните корзину сокровищами!"
+
+#: .\cart\templates\cart\detail.html:32 .\cart\templates\cart\draft.html:30
+msgid "Start Shopping"
+msgstr "Начать покупки"
+
+#: .\cart\templates\cart\detail.html:88 .\cart\templates\cart\draft.html:85
+msgid "Order Summary"
+msgstr "Сводка заказа"
+
+#: .\cart\templates\cart\detail.html:93
+msgid "Apply Coupon"
+msgstr "Применить купон"
+
+#: .\cart\templates\cart\detail.html:97
+msgid "Applied"
+msgstr "Применен"
+
+#: .\cart\templates\cart\detail.html:108 .\cart\templates\cart\draft.html:88
+msgid "Subtotal"
+msgstr "Промежуточный итог"
+
+#: .\cart\templates\cart\detail.html:114
+msgid "Coupon Discount"
+msgstr "Скидка по купону"
+
+#: .\cart\templates\cart\detail.html:120
+msgid "Shipping"
+msgstr "Доставка"
+
+#: .\cart\templates\cart\detail.html:131 .\cart\templates\cart\draft.html:104
+msgid "Proceed to Checkout"
+msgstr "Перейти к оформлению"
+
+#: .\cart\templates\cart\detail.html:137 .\cart\templates\cart\draft.html:110
+msgid "Continue Shopping"
+msgstr "Продолжить покупки"
+
+#: .\cart\templates\cart\detail.html:146 .\cart\templates\cart\draft.html:119
+msgid "Secure Payment"
+msgstr "Безопасная оплата"
+
+#: .\cart\templates\cart\detail.html:150 .\cart\templates\cart\draft.html:123
+msgid "Easy Returns"
+msgstr "Легкий возврат"
+
+#: .\cart\templates\cart\detail.html:154 .\cart\templates\cart\draft.html:127
+msgid "Fast Shipping"
+msgstr "Быстрая доставка"
+
+#: .\cart\templates\cart\detail.html:162 .\cart\templates\cart\draft.html:135
+msgid "Maybe you like"
+msgstr "Вам может понравиться"
+
+#: .\cart\templates\cart\detail.html:180 .\cart\templates\cart\draft.html:155
+msgid "Remove Item"
+msgstr "Удалить товар"
+
+#: .\cart\templates\cart\detail.html:181 .\cart\templates\cart\draft.html:156
+msgid "Are you sure you want to remove this item from your cart?"
+msgstr "Вы уверены, что хотите удалить этот товар из корзины?"
+
+#: .\cart\templates\cart\detail.html:183 .\cart\templates\cart\draft.html:158
+msgid "Cancel"
+msgstr "Отмена"
+
+#: .\cart\templates\cart\detail.html:184 .\cart\templates\cart\draft.html:159
+msgid "Remove"
+msgstr "Удалить"
+
+#: .\cart\templates\cart\detail.html:193
+msgid "Apply Coupon Code"
+msgstr "Применить код купона"
+
+#: .\cart\templates\cart\detail.html:194
+msgid "Enter your coupon code to get a discount on your order"
+msgstr "Введите код купона, чтобы получить скидку на заказ"
+
+#: .\cart\templates\cart\detail.html:203
+msgid "Enter coupon code"
+msgstr "Введите код купона"
+
+#: .\cart\templates\cart\detail.html:207
+msgid "Apply"
+msgstr "Применить"
+
+#: .\cart\templates\cart\draft.html:93
+msgid "Discount"
+msgstr "Скидка"

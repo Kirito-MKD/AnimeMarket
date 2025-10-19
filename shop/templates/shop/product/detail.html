@@ -1,0 +1,611 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="anime-product-container">
+    <!-- Декоративные элементы -->
+    <div class="decorative-elements">
+        <div class="floating-sakura sakura-1">🌸</div>
+        <div class="floating-sakura sakura-2">🌸</div>
+        <div class="floating-sakura sakura-3">🌸</div>
+        <div class="floating-sakura sakura-4">🌸</div>
+    </div>
+
+    <!-- Хлебные крошки -->
+    <div class="breadcrumb">
+        <a href="{% url 'shop:main_page' %}">🏠 {% trans "Home" %}</a>
+        <span class="breadcrumb-separator">›</span>
+        <a href="{% url 'shop:product_list' %}">📦 {% trans "Shop" %}</a>
+        <span class="breadcrumb-separator">›</span>
+        <a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a>
+        <span class="breadcrumb-separator">›</span>
+        <span class="current-page">{{ product.name }}</span>
+    </div>
+
+    <!-- Основная секция товара -->
+    <div class="product-hero-section">
+        <!-- Левая колонка - изображение -->
+        <div class="product-gallery">
+            <div class="main-image-container">
+                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_img.jpg' %}{% endif %}"
+                     alt="{{ product.name }}"
+                     class="product-main-image"
+                     id="main-product-image">
+                <div class="image-badge">✨ {% trans "Premium Quality" %}</div>
+            </div>
+
+            <!-- Миниатюры (если есть дополнительные изображения) -->
+            <div class="image-thumbnails">
+                <div class="thumbnail active" data-image="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_img.jpg' %}{% endif %}">
+                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_img.jpg' %}{% endif %}" alt="Main">
+                </div>
+                <!-- Можно добавить дополнительные миниатюры -->
+            </div>
+        </div>
+
+        <!-- Правая колонка - информация -->
+        <div class="product-details">
+            <!-- Заголовок и категория -->
+            <div class="product-header">
+                <h1 class="product-title">{{ product.name }}</h1>
+                <div class="category-tag">
+                    <a href="{{ product.category.get_absolute_url }}" class="category-link">
+                        🏷️ {{ product.category }}
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- Цена -->
+            <div class="price-section">
+                <div class="current-price">{{ product.price }} $</div>
+                {% if product.old_price %}
+                <div class="old-price">{{ product.old_price }} $</div>
+                <div class="discount-badge">-{{ product.get_discount_percent }}%</div>
+                {% endif %}
+            </div>
+
+            <!-- Доставка и наличие -->
+            <div class="availability-section">
+                <div class="availability-item">
+                    <span class="availability-icon">🚚</span>
+                    <span class="availability-text">{% trans "Free shipping over 10" %}</span>
+                </div>
+                <div class="availability-item">
+                    <span class="availability-icon">📦</span>
+                    <span class="availability-text in-stock">{% trans "In Stock - Ready to Ship" %}</span>
+                </div>
+                <div class="availability-item">
+                    <span class="availability-icon">🔄</span>
+                    <span class="availability-text">{% trans "30-day return policy" %}</span>
+                </div>
+            </div>
+
+            <!-- Форма покупки -->
+            <div class="purchase-section">
+                <form action="{% url 'cart:cart_add' product.id %}" method="post" class="purchase-form" id="purchase-form">
+                    {% csrf_token %}
+
+                    <div class="quantity-section">
+                        <label class="quantity-label">{% trans "Quantity:" %}</label>
+                        <div class="quantity-controls">
+                            <button type="button" class="quantity-btn minus" aria-label="Decrease quantity">
+                                <span class="btn-icon">−</span>
+                            </button>
+                            <input type="number"
+                                   name="quantity"
+                                   value="1"
+                                   min="1"
+                                   max="99"
+                                   class="quantity-input"
+                                   id="id_quantity"
+                                   readonly>
+                            <button type="button" class="quantity-btn plus" aria-label="Increase quantity">
+                                <span class="btn-icon">+</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="override" value="False">
+
+                    <div class="action-buttons">
+                        <button type="submit" class="add-to-cart-btn primary-btn">
+                            <span class="btn-icon">🛒</span>
+                            <span class="btn-text">{% trans "Add to Cart" %}</span>
+                            <div class="btn-loader"></div>
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+
+            <!-- Гарантии -->
+            <div class="guarantee-section">
+                <div class="guarantee-item">
+                    <span class="guarantee-icon">🔒</span>
+                    <span>{% trans "Secure Payment" %}</span>
+                </div>
+                <div class="guarantee-item">
+                    <span class="guarantee-icon">🚚</span>
+                    <span>{% trans "Fast Shipping" %}</span>
+                </div>
+                <div class="guarantee-item">
+                    <span class="guarantee-icon">🔄</span>
+                    <span>{% trans "Easy Returns" %}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Детальная информация -->
+    <div class="product-info-tabs">
+        <div class="tab-nav">
+            <button class="tab-btn active" data-tab="description">📖 {% trans "Description" %}</button>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="description">
+                <div class="description-content">
+                    {{ product.description|linebreaks }}
+                </div>
+            </div>
+
+            <div class="tab-pane" id="specifications">
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">{% trans "Material" %}</span>
+                        <span class="spec-value">{% trans "Premium PVC" %}</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">{% trans "Height" %}</span>
+                        <span class="spec-value">18 cm</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">{% trans "Weight" %}</span>
+                        <span class="spec-value">250 g</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">{% trans "Series" %}</span>
+                        <span class="spec-value">{{ product.category }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="shipping">
+                <div class="shipping-info">
+                    <h4>🚚 {% trans "Shipping Information" %}</h4>
+                    <ul class="shipping-list">
+                        <li>{% trans "Free shipping on orders over 2000$" %}</li>
+                        <li>{% trans "Standard delivery: 3-5 business days" %}</li>
+                        <li>{% trans "Express delivery available" %}</li>
+                        <li>{% trans "International shipping available" %}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Похожие товары -->
+<section class="related-products">
+    <div class="section-header">
+        <h2>🎌 {% trans "You Might Also Like" %}</h2>
+        <p>{% trans "Discover more amazing anime treasures" %}</p>
+    </div>
+    <div class="products-grid" id="related-products-grid">
+        {% for r_product in recommended_products %}
+            <div class="product-card">
+                <form action="{{ r_product.get_absolute_url }}">
+                    <div class="product-image">
+                        <img src="{% if r_product.image %}{{ r_product.image.url }}{% else %}{% static 'img/no_img.jpg' %}{% endif %}" alt="${product.name}">
+                        <div class="product-overlay">
+                            <button type="submit" class="quick-view-btn">👀 {% trans "Quick View" %}</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">{{r_product.name}}</h3>
+                        <p class="product-category">{{r_product.category}}</p>
+                        <div class="product-price">{{r_product.price}}</div>
+                        <button class="add-to-cart-mini">🛒 {% trans "Add to Cart" %}</button>
+                    </div>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Модальное окно успешного добавления -->
+<div class="modal success-modal" id="success-modal">
+    <div class="modal-content">
+        <div class="modal-icon">🎉</div>
+        <h3>{% trans "Added to Cart!" %}</h3>
+        <p>{% trans "The item has been successfully added to your shopping cart." %}</p>
+        <div class="modal-actions">
+            <a href="{% url 'cart:cart_detail' %}" class="btn-primary">
+                🛒 {% trans "View Cart" %}
+            </a>
+            <button class="btn-secondary continue-shopping">
+                🏪 {% trans "Continue Shopping" %}
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+    class ProductDetail {
+    constructor() {
+        this.quantityInput = document.getElementById('id_quantity');
+        this.addToCartBtn = document.querySelector('.add-to-cart-btn');
+        this.purchaseForm = document.getElementById('purchase-form');
+        this.successModal = document.getElementById('success-modal');
+        this.tabButtons = document.querySelectorAll('.tab-btn');
+        this.tabPanes = document.querySelectorAll('.tab-pane');
+        this.thumbnails = document.querySelectorAll('.thumbnail');
+        this.mainImage = document.getElementById('main-product-image');
+
+        this.init();
+    }
+
+    init() {
+        this.bindEvents();
+        this.createSakuraPetals();
+        this.initParallax();
+        this.addStyles();
+    }
+
+    addStyles() {
+        if (document.getElementById('product-detail-styles')) {
+            return;
+        }
+
+        const styleElement = document.createElement('style');
+        styleElement.id = 'product-detail-styles';
+        styleElement.textContent = `
+            @keyframes fall {
+                0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+                100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+            }
+
+            @keyframes petal-pop {
+                0% {
+                    transform: translate(0, 0) scale(1) rotate(0deg);
+                    opacity: 0.8;
+                }
+                50% {
+                    transform: translate(${Math.random() * 100 - 50}px, -50px) scale(1.2) rotate(180deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(${Math.random() * 100 - 50}px, -100px) scale(0.5) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+
+            @keyframes bounce {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+            }
+
+            .quantity-bounce {
+                animation: bounce 0.3s ease;
+            }
+
+            .sakura-petal {
+                position: fixed;
+                pointer-events: none;
+                user-select: none;
+                z-index: 9998;
+            }
+
+            .error-notification {
+                font-family: inherit;
+            }
+        `;
+        document.head.appendChild(styleElement);
+    }
+
+    bindEvents() {
+        const minusBtn = document.querySelector('.quantity-btn.minus');
+        const plusBtn = document.querySelector('.quantity-btn.plus');
+
+        if (minusBtn) {
+            minusBtn.addEventListener('click', () => this.changeQuantity(-1));
+        }
+        if (plusBtn) {
+            plusBtn.addEventListener('click', () => this.changeQuantity(1));
+        }
+
+        if (this.purchaseForm) {
+            this.purchaseForm.addEventListener('submit', (e) => this.handleAddToCart(e));
+        }
+
+        this.tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => this.switchTab(btn.dataset.tab));
+        });
+
+        this.thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => this.switchImage(thumb.dataset.image));
+        });
+
+        const continueShopping = document.querySelector('.continue-shopping');
+        if (continueShopping) {
+            continueShopping.addEventListener('click', () => this.closeModal());
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') this.closeModal();
+        });
+
+        const wishlistBtn = document.querySelector('.wishlist-btn');
+        if (wishlistBtn) {
+            wishlistBtn.addEventListener('click', () => this.addToWishlist());
+        }
+    }
+
+    changeQuantity(delta) {
+        if (!this.quantityInput) return;
+
+        let currentValue = parseInt(this.quantityInput.value) || 1;
+        let newValue = currentValue + delta;
+
+        if (newValue >= 1 && newValue <= 99) {
+            this.quantityInput.value = newValue;
+            this.animateQuantityChange();
+            this.createSakuraPetalNearElement(this.quantityInput);
+        }
+    }
+
+    animateQuantityChange() {
+        if (!this.quantityInput) return;
+
+        this.quantityInput.classList.remove('quantity-bounce');
+        void this.quantityInput.offsetWidth;
+        this.quantityInput.classList.add('quantity-bounce');
+
+        setTimeout(() => {
+            this.quantityInput.classList.remove('quantity-bounce');
+        }, 300);
+    }
+
+    async handleAddToCart(e) {
+        e.preventDefault();
+
+        if (!this.addToCartBtn) return;
+
+        const btn = this.addToCartBtn;
+        const originalText = btn.querySelector('.btn-text')?.textContent || 'Add to Cart';
+
+        btn.disabled = true;
+        if (btn.querySelector('.btn-text')) {
+            btn.querySelector('.btn-text').textContent = 'Adding...';
+        }
+        if (btn.querySelector('.btn-loader')) {
+            btn.querySelector('.btn-loader').style.display = 'block';
+        }
+
+        try {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            this.showSuccessAnimation();
+
+            setTimeout(() => {
+                if (this.purchaseForm) {
+                    this.purchaseForm.submit();
+                }
+            }, 1500);
+
+        } catch (error) {
+            console.error('Error adding to cart:', error);
+            this.showError('Failed to add item to cart. Please try again.');
+            this.resetButton(btn, originalText);
+        }
+    }
+
+    showSuccessAnimation() {
+        for (let i = 0; i < 12; i++) {
+            setTimeout(() => this.createSakuraPetalNearElement(this.addToCartBtn), i * 100);
+        }
+
+        setTimeout(() => {
+            this.showModal();
+        }, 800);
+    }
+
+    showModal() {
+        if (this.successModal) {
+            this.successModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    closeModal() {
+        if (this.successModal) {
+            this.successModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+
+    resetButton(btn, originalText) {
+        btn.disabled = false;
+        if (btn.querySelector('.btn-text')) {
+            btn.querySelector('.btn-text').textContent = originalText;
+        }
+        if (btn.querySelector('.btn-loader')) {
+            btn.querySelector('.btn-loader').style.display = 'none';
+        }
+    }
+
+    switchTab(tabId) {
+        this.tabButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.tab === tabId);
+        });
+
+        this.tabPanes.forEach(pane => {
+            pane.classList.toggle('active', pane.id === tabId);
+        });
+    }
+
+    switchImage(imageUrl) {
+        if (!this.mainImage) return;
+
+        this.mainImage.style.opacity = '0';
+
+        setTimeout(() => {
+            this.mainImage.src = imageUrl;
+            this.mainImage.style.opacity = '1';
+        }, 200);
+
+        this.thumbnails.forEach(thumb => {
+            thumb.classList.toggle('active', thumb.dataset.image === imageUrl);
+        });
+    }
+
+    addToWishlist() {
+        const btn = document.querySelector('.wishlist-btn');
+        if (!btn) return;
+
+        const originalText = btn.querySelector('.btn-text')?.textContent || 'Add to Wishlist';
+
+        if (btn.querySelector('.btn-text')) {
+            btn.querySelector('.btn-text').textContent = 'Added!';
+        }
+        btn.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+
+        this.createSakuraPetalNearElement(btn);
+
+        setTimeout(() => {
+            if (btn.querySelector('.btn-text')) {
+                btn.querySelector('.btn-text').textContent = originalText;
+            }
+            btn.style.background = '';
+        }, 2000);
+    }
+
+    createSakuraPetals() {
+        for (let i = 0; i < 8; i++) {
+            setTimeout(() => this.createFloatingSakura(), i * 800);
+        }
+    }
+
+    createFloatingSakura() {
+        const sakura = document.createElement('div');
+        sakura.className = 'sakura-petal';
+        sakura.innerHTML = '🌸';
+        sakura.style.cssText = `
+            position: fixed;
+            top: -50px;
+            font-size: ${20 + Math.random() * 15}px;
+            opacity: ${0.3 + Math.random() * 0.4};
+            left: ${Math.random() * 100}vw;
+            pointer-events: none;
+            z-index: 9998;
+            animation: fall ${8 + Math.random() * 12}s linear infinite;
+        `;
+
+        document.body.appendChild(sakura);
+
+        setTimeout(() => {
+            sakura.remove();
+        }, 20000);
+    }
+
+    createSakuraPetalNearElement(element) {
+        if (!element) return;
+
+        const rect = element.getBoundingClientRect();
+
+        const petal = document.createElement('div');
+        petal.className = 'sakura-petal';
+        petal.innerHTML = '🌸';
+        petal.style.cssText = `
+            position: fixed;
+            top: ${rect.top + rect.height/2}px;
+            left: ${rect.left + rect.width/2}px;
+            font-size: 20px;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: 9999;
+            animation: petal-pop 1.5s ease-out forwards;
+        `;
+
+        document.body.appendChild(petal);
+
+        setTimeout(() => {
+            petal.remove();
+        }, 1500);
+    }
+
+    initParallax() {
+        if (!this.mainImage) return;
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 10;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 10;
+        });
+
+        const updateParallax = () => {
+            if (this.mainImage) {
+                this.mainImage.style.transform = `translate(${mouseX}px, ${mouseY}px) scale(1.02)`;
+            }
+            requestAnimationFrame(updateParallax);
+        };
+
+        updateParallax();
+    }
+
+    showError(message) {
+        const notification = document.createElement('div');
+        notification.className = 'error-notification';
+        notification.innerHTML = `
+            <span class="notification-icon">❌</span>
+            <span class="notification-message">${message}</span>
+        `;
+
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+            z-index: 10001;
+            animation: slideInRight 0.3s ease;
+        `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    new ProductDetail();
+});
+</script>
+{% endblock %}

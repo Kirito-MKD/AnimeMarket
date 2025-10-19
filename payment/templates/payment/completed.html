@@ -1,0 +1,137 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Order Complete - AnimeMarket" %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/payment_success.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="complete-container">
+    <!-- Progress Bar -->
+    <div class="complete-progress">
+        <div class="progress-step completed">
+            <span class="step-number">1</span>
+            <span class="step-text">{% trans "Cart" %}</span>
+        </div>
+        <div class="progress-step completed">
+            <span class="step-number">2</span>
+            <span class="step-text">{% trans "Details" %}</span>
+        </div>
+        <div class="progress-step completed">
+            <span class="step-number">3</span>
+            <span class="step-text">{% trans "Payment" %}</span>
+        </div>
+        <div class="progress-step active">
+            <span class="step-number">4</span>
+            <span class="step-text">{% trans "Complete" %}</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="complete-content">
+        <!-- Success Animation -->
+        <div class="success-animation">
+            <div class="cat-animation" id="cat-animation">
+                <div class="cat-body">🐱</div>
+                <div class="cat-tail">～</div>
+                <div class="sparkles">✨✨✨</div>
+            </div>
+        </div>
+
+        <!-- Order Confirmation -->
+        <div class="confirmation-card">
+            <h1 class="confirmation-title">
+                {% trans "Thank You for Your Order!" %}
+                <span class="heart">💕</span>
+            </h1>
+
+            <div class="order-status">
+                <div class="status-badge {% if order.paid %}status-paid{% else %}status-pending{% endif %}">
+                    {% if order.paid %}
+                    ✅ {% trans "Payment Successful" %}
+                    {% else %}
+                    ⏳ {% trans "Payment After Receiving" %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <div class="summary-item">
+                    <span class="summary-label">{% trans "Order Number" %}:</span>
+                    <span class="summary-value">#{{ order.id }}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">{% trans "Order Date" %}:</span>
+                    <span class="summary-value">{{ order.created|date:"F d, Y" }}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">{% trans "Total Amount" %}:</span>
+                    <span class="summary-value price">{{ order.get_total_cost|floatformat:2 }} $</span>
+                </div>
+            </div>
+
+
+            <!-- Thank You Message -->
+            <div class="thank-you-message">
+                <p>{% trans "Your order has been confirmed and will be shipped soon. We'll send you a tracking number once your package is on its way!" %}</p>
+                <p>{% trans "Thank you for choosing AnimeMarket! We hope you love your anime treasures! 🌸" %}</p>
+            </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="next-steps">
+            <h3 class="steps-title">🎯 {% trans "What's Next?" %}</h3>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-icon">📧</div>
+                    <div class="step-content">
+                        <h4>{% trans "Order Confirmation" %}</h4>
+                        <p>{% trans "Check your email for order details and receipt" %}</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">🚚</div>
+                    <div class="step-content">
+                        <h4>{% trans "Shipping Updates" %}</h4>
+                        <p>{% trans "We'll notify you when your order ships" %}</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">📱</div>
+                    <div class="step-content">
+                        <h4>{% trans "Track Your Order" %}</h4>
+                        <p>{% trans "Use your order number to track delivery" %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="{% url 'shop:product_list' %}" class="btn-primary">
+                🛍️ {% trans "Continue Shopping" %}
+            </a>
+        </div>
+
+        <!-- Support Info -->
+        <div class="support-info">
+            <p>{% trans "Need help with your order?" %}
+                <a href="mailto:support@animemarket.com" class="support-link">
+                    {% trans "Contact our support team" %}
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Confetti Animation Container -->
+<div class="confetti-container" id="confetti-container"></div>
+{% endblock %}
+
+{% block extra_script %}
+<script src="{% static 'js/order_complete.js' %}"></script>
+{% endblock %}

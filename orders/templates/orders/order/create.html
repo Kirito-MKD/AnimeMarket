@@ -1,0 +1,588 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Checkout - Anime Market" %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="checkout-container">
+    <!-- Checkout Header -->
+    <div class="checkout-header">
+        <h1 class="checkout-title">🎌 {% trans "Checkout" %}</h1>
+        <div class="checkout-progress">
+            <div class="progress-step active">
+                <span class="step-number">1</span>
+                <span class="step-text">{% trans "Cart" %}</span>
+            </div>
+            <div class="progress-step active">
+                <span class="step-number">2</span>
+                <span class="step-text">{% trans "Details" %}</span>
+            </div>
+            <div class="progress-step">
+                <span class="step-number">3</span>
+                <span class="step-text">{% trans "Payment" %}</span>
+            </div>
+            <div class="progress-step">
+                <span class="step-number">4</span>
+                <span class="step-text">{% trans "Complete" %}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout-content">
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <div class="summary-card">
+                <h3 class="summary-title">📦 {% trans "Order Summary" %}</h3>
+
+                <div class="order-items">
+                    {% for item in cart %}
+                    <div class="order-item">
+                        <div class="item-image">
+                            {% if item.product.image %}
+                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                            {% else %}
+                                <div class="image-placeholder">🌸</div>
+                            {% endif %}
+                        </div>
+                        <div class="item-details">
+                            <h4 class="item-name">{{ item.product.name }}</h4>
+                            <p class="item-category">{{ item.product.category.name }}</p>
+                            <div class="item-quantity">{% trans "Items" %}: {{ item.quantity }}</div>
+                        </div>
+                        <div class="item-price">{{ item.total_price }} $</div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="summary-totals">
+                    <div class="total-row">
+                        <span>{% trans "Subtotal" %}</span>
+                        <span>{{ cart.get_total_price|floatformat:2 }} $</span>
+                    </div>
+                    <div class="total-row">
+                        <span>{% trans "Shipping" %}</span>
+                        <span class="free-shipping">{% trans "FREE" %}</span>
+                    </div>
+
+                    {% if cart.is_discount %}
+
+                    <div class="total-row">
+                        <span>{% trans "Discount" %}</span>
+                        <span class="free-shipping">{{ cart.get_discount }}</span>
+                    </div>
+
+                    {% endif %}
+
+                    <div class="total-row grand-total">
+                        <span>{% trans "Total" %}</span>
+                        <span class="total-amount">{{ cart.get_total_price_after_discount|floatformat:2 }} $</span>
+                    </div>
+                </div>
+
+                <div class="security-badges">
+                    <div class="badge-item">
+                        <span class="badge-icon">🔒</span>
+                        <span>{% trans "Secure SSL Encryption" %}</span>
+                    </div>
+                    <div class="badge-item">
+                        <span class="badge-icon">🛡️</span>
+                        <span>{% trans "Payment Protection" %}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Info -->
+            <div class="support-card">
+                <h4>💬 {% trans "Need Help?" %}</h4>
+                <p>{% trans "Our support team is here to help with your order." %}</p>
+                <div class="support-contacts">
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <span>support@animemarket-shop.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkout Form -->
+        <div class="checkout-form-section">
+            <form action="{% url 'orders:order_create' %}" method="post" class="checkout-form">
+                {% csrf_token %}
+
+                <!-- Personal Information -->
+                <div class="form-section">
+                    <h3 class="section-title">👤 {% trans "Personal Information" %}</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>{% trans "First name" %}</label>
+                            {{ form.first_name }}
+                            {% if form.first_name.errors %}
+                                <span class="error-message">{{ form.first_name.errors.0 }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label>{% trans "Surname" %}</label>
+                            {{ form.last_name }}
+                        </div>
+                        <div class="form-group">
+                            <label>{% trans "Email" %}</label>
+                            {{ form.email }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shipping Address -->
+                <div class="form-section">
+                    <h3 class="section-title">🏠 {% trans "Shipping Address" %}</h3>
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label>{% trans "Address" %}</label>
+                            {{ form.address }}
+                        </div>
+                        <div class="form-group">
+                            <label>{% trans "City" %}</label>
+                            {{ form.city }}
+                        </div>
+                        <div class="form-group">
+                            <label>{% trans "Postal Code" %}</label>
+                            {{ form.postal_code }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="form-section">
+                    <label class="terms-checkbox">
+                        <input type="checkbox" id="terms" required>
+                        <span class="checkmark"></span>
+                        <span class="terms-text">
+                            {% trans "I agree to the" %}
+                            <a href="#" class="terms-link">{% trans "Terms and Conditions" %}</a>
+                            {% trans "and" %}
+                            <a href="#" class="terms-link">{% trans "Privacy Policy" %}</a>
+                        </span>
+                    </label>
+                        <span id="privacy-error" class="error-message hidden" data-value = ''>{% trans "This step is required" %}</span>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-actions">
+                    <a href="{% url 'cart:cart_detail' %}" class="btn-back">
+                        ← {% trans "Back to Cart" %}
+                    </a>
+                    <button type="submit" class="btn-submit wave-btn" id="submit-btn">
+                        <span>🔒 {% trans "Place Order" %}</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loading-overlay">
+    <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <p>{% trans "Processing your order..." %}</p>
+    </div>
+</div>
+{%  endblock %}
+
+{% block extra_script %}
+
+<script>
+        // Checkout Page Functionality
+
+    class CheckoutPage {
+        constructor() {
+            this.form = document.getElementById('checkout-form');
+            this.loadingOverlay = document.getElementById('loading-overlay');
+            this.init();
+        }
+
+        init() {
+            this.setupEventListeners();
+            this.setupFormValidation();
+            this.setupAnimations();
+            this.setupPaymentMethods();
+        }
+
+        setupEventListeners() {
+            // Form submission
+            if (this.form) {
+                this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+            }
+
+            // Input validation on blur
+            document.querySelectorAll('input, select').forEach(input => {
+                input.addEventListener('blur', () => {
+                    this.validateField(input);
+                });
+
+                input.addEventListener('input', () => {
+                    this.clearFieldError(input);
+                });
+            });
+
+            // Terms checkbox
+            const termsCheckbox = document.getElementById('terms');
+            if (termsCheckbox) {
+                termsCheckbox.addEventListener('change', () => {
+                    this.validateTerms();
+                    this.togglePrivacyError(); // Добавлен вызов метода
+                });
+            }
+
+            // Submit button hover for privacy error
+            const submitBtn = document.getElementById('submit-btn');
+            if (submitBtn) {
+                submitBtn.addEventListener('mouseover', () => {
+                    this.showPrivacyErrorOnHover();
+                });
+            }
+        }
+
+        setupFormValidation() {
+            // Add validation rules to fields
+            this.setupValidationRules();
+        }
+
+        setupValidationRules() {
+            const rules = {
+                first_name: { required: true, minLength: 2 },
+                last_name: { required: true, minLength: 2 },
+                email: { required: true, email: true },
+                phone: { required: true, phone: true },
+                address: { required: true, minLength: 5 },
+                city: { required: true, minLength: 2 },
+                postal_code: { required: true, minLength: 4 },
+                country: { required: true }
+            };
+
+            // Store rules in dataset
+            Object.keys(rules).forEach(fieldName => {
+                const field = document.querySelector(`[name="${fieldName}"]`);
+                if (field) {
+                    field.dataset.rules = JSON.stringify(rules[fieldName]);
+                }
+            });
+        }
+
+        setupAnimations() {
+            // Animate form sections on scroll
+            this.animateOnScroll();
+
+            // Add hover effects
+            this.setupHoverEffects();
+        }
+
+        animateOnScroll() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.form-section, .summary-card')
+                .forEach(section => observer.observe(section));
+        }
+
+        setupHoverEffects() {
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            paymentMethods.forEach(method => {
+                method.addEventListener('mouseenter', () => {
+                    method.style.transform = 'translateX(5px)';
+                    method.style.borderColor = '#ff9eb3';
+                });
+
+                method.addEventListener('mouseleave', () => {
+                    method.style.transform = 'translateX(0)';
+                    if (!method.querySelector('input').checked) {
+                        method.style.borderColor = '#ffd1dc';
+                    }
+                });
+            });
+        }
+
+        setupPaymentMethods() {
+            const paymentMethods = document.querySelectorAll('.payment-method input');
+            paymentMethods.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    this.updateSelectedPayment();
+                });
+            });
+        }
+
+        updateSelectedPayment() {
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.style.borderColor = '#ffd1dc';
+                method.style.background = 'white';
+            });
+
+            const selectedMethod = document.querySelector('.payment-method input:checked')?.closest('.payment-method');
+            if (selectedMethod) {
+                selectedMethod.style.borderColor = '#ff6b93';
+                selectedMethod.style.background = 'linear-gradient(135deg, #fffafb 0%, #fff5f7 100%)';
+            }
+        }
+
+        validateField(field) {
+            const rules = JSON.parse(field.dataset.rules || '{}');
+            const value = field.value.trim();
+            let isValid = true;
+            let errorMessage = '';
+
+            if (rules.required && !value) {
+                isValid = false;
+                errorMessage = 'This field is required';
+            }
+
+            if (isValid && rules.minLength && value.length < rules.minLength) {
+                isValid = false;
+                errorMessage = `Minimum ${rules.minLength} characters required`;
+            }
+
+            if (isValid && rules.email && !this.isValidEmail(value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email address';
+            }
+
+            if (isValid && rules.phone && !this.isValidPhone(value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid phone number';
+            }
+
+            if (!isValid) {
+                this.showFieldError(field, errorMessage);
+            } else {
+                this.clearFieldError(field);
+            }
+
+            return isValid;
+        }
+
+        validateTerms() {
+            const termsCheckbox = document.getElementById('terms');
+            const termsError = document.querySelector('#terms ~ .error-message');
+
+            if (!termsCheckbox?.checked) {
+                if (termsError) {
+                    termsError.textContent = 'You must accept the terms and conditions';
+                }
+                return false;
+            }
+
+            if (termsError) {
+                termsError.textContent = '';
+            }
+
+            return true;
+        }
+
+        // Новый метод для управления ошибкой приватности
+        togglePrivacyError() {
+            const termsCheckbox = document.getElementById('terms');
+            const privacyLabel = document.getElementById('privacy-error');
+
+            if (!termsCheckbox || !privacyLabel) return;
+
+            if (!termsCheckbox.checked) {
+                privacyLabel.classList.remove('hidden');
+            } else {
+                privacyLabel.classList.add('hidden');
+            }
+        }
+
+        // Новый метод для показа ошибки при наведении
+        showPrivacyErrorOnHover() {
+            const termsCheckbox = document.getElementById('terms');
+            const privacyLabel = document.getElementById('privacy-error');
+
+            if (!termsCheckbox || !privacyLabel) return;
+
+            if (!termsCheckbox.checked) {
+                privacyLabel.classList.remove('hidden');
+            }
+        }
+
+        validateForm() {
+            let isValid = true;
+
+            // Validate all fields
+            document.querySelectorAll('input[data-rules], select[data-rules]').forEach(field => {
+                if (!this.validateField(field)) {
+                    isValid = false;
+                }
+            });
+
+            // Validate terms
+            if (!this.validateTerms()) {
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+
+        showFieldError(field, message) {
+            this.clearFieldError(field);
+
+            field.style.borderColor = '#f44336';
+
+            const errorElement = document.createElement('span');
+            errorElement.className = 'error-message';
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            errorElement.style.marginTop = '5px';
+
+            field.parentNode.appendChild(errorElement);
+        }
+
+        clearFieldError(field) {
+            field.style.borderColor = '#ffd1dc';
+
+            const existingError = field.parentNode.querySelector('.error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+        }
+
+        showLoading(show) {
+            if (this.loadingOverlay) {
+                this.loadingOverlay.style.display = show ? 'flex' : 'none';
+            }
+        }
+
+        showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 10px;
+                color: white;
+                font-weight: 600;
+                z-index: 10000;
+                animation: slideInRight 0.3s ease;
+            `;
+
+            if (type === 'success') {
+                notification.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+            } else {
+                notification.style.background = 'linear-gradient(135deg, #f44336 0%, #d32f2f 100%)';
+            }
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        isValidPhone(phone) {
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+        }
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        new CheckoutPage();
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes slideOutRight {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+
+            .wave-btn {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .wave-btn::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+                transition: left 0.5s ease;
+            }
+
+            .wave-btn:hover::after {
+                left: 100%;
+            }
+
+            .form-section {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            .summary-card {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            .hidden {
+                display: none !important;
+            }
+        `;
+        document.head.appendChild(style);
+    });
+</script>
+{% endblock %}

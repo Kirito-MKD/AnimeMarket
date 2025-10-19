@@ -1,0 +1,206 @@
+<html>
+<head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500;700&display=swap');
+
+    body {
+        font-family: 'Rajdhani', sans-serif;
+        background: #0f2027;
+        background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+        color: #e0f7ff;
+        padding: 30px;
+        margin: 0;
+    }
+
+    h1, h3 {
+        font-family: 'Orbitron', sans-serif;
+        color: #4db8ff;
+        text-shadow: 0 0 10px rgba(77, 184, 255, 0.7);
+    }
+
+    h1 {
+        font-size: 28px;
+        border-bottom: 2px solid #4db8ff;
+        padding-bottom: 10px;
+        text-align: center;
+        letter-spacing: 2px;
+    }
+
+    h3 {
+        font-size: 18px;
+        margin-top: 25px;
+        border-left: 3px solid #4db8ff;
+        padding-left: 10px;
+    }
+
+    .secondary {
+        color: #7d8b9a;
+        font-size: 14px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    th {
+        background: rgba(77, 184, 255, 0.2);
+        color: #4db8ff;
+        padding: 12px;
+        text-align: left;
+        font-family: 'Orbitron', sans-serif;
+        letter-spacing: 1px;
+    }
+
+    td {
+        padding: 10px 12px;
+        border-bottom: 1px solid rgba(77, 184, 255, 0.1);
+    }
+
+    .num {
+        text-align: right;
+    }
+
+    .row1 {
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .row2 {
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+    .total {
+        font-weight: bold;
+        background: rgba(77, 184, 255, 0.1);
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .total td {
+        border-top: 2px solid #4db8ff;
+        border-bottom: none;
+    }
+
+    .paid {
+        display: inline-block;
+        padding: 8px 15px;
+        background: rgba(46, 204, 113, 0.2);
+        color: #2ecc71;
+        border: 1px solid #2ecc71;
+        border-radius: 4px;
+        font-family: 'Orbitron', sans-serif;
+        animation: pulse 2s infinite;
+    }
+
+    .pending {
+        display: inline-block;
+        padding: 8px 15px;
+        background: rgba(231, 76, 60, 0.2);
+        color: #e74c3c;
+        border: 1px solid #e74c3c;
+        border-radius: 4px;
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+    }
+
+    .sao-logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .sao-logo::before {
+        content: "⌈";
+        color: #4db8ff;
+        font-size: 24px;
+        margin-right: 10px;
+    }
+
+    .sao-logo::after {
+        content: "⌋";
+        color: #4db8ff;
+        font-size: 24px;
+        margin-left: 10px;
+    }
+</style>
+</head>
+<body>
+    <div class="sao-logo">
+        <h1>AINCRAD SHOP</h1>
+    </div>
+
+    <p>
+        <strong>INVOICE #{{ order.id }}</strong><br>
+        <span class="secondary">
+            {{ order.created|date:"M d, Y H:i" }}
+        </span>
+    </p>
+
+    <h3>BILL TO</h3>
+    <p>
+        {{ order.first_name }} {{ order.last_name }}<br>
+        {{ order.email }}<br>
+        {{ order.address }}<br>
+        {{ order.postal_code }}, {{ order.city }}
+    </p>
+
+    <h3>ITEM LIST</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ITEM</th>
+                <th>PRICE</th>
+                <th>QTY</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order.items.all %}
+                <tr class="row{% cycle '1' '2' %}">
+                    <td>{{ item.product.name }}</td>
+                    <td class="num">{{ item.price }} COL</td>
+                    <td class="num">{{ item.quantity }}</td>
+                    <td class="num">{{ item.get_cost }} COL</td>
+                </tr>
+            {% endfor %}
+
+            {% if order.coupon %}
+                    <tr class="subtotal">
+                        <td>Subtotal</td>
+                        <td class="num">
+                            {{ order.get_total_cost_before_discount|floatformat:2 }} $
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Coupon: {{ order.coupon.code }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ order.discount }}% off</td>
+                    </tr>
+                    <tr>
+                        <td>- {{order.get_discount|floatformat:2}}</td>
+                    </tr>
+                {% endif %}
+
+            <tr class="total">
+                <td colspan="3">TOTAL</td>
+                <td class="num">{{ order.get_total_cost }} COL</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="{% if order.paid %}paid{% else %}pending{% endif %}">
+        {% if order.paid %}PAYMENT CONFIRMED{% else %}PENDING PAYMENT{% endif %}
+    </div>
+
+    <div style="margin-top: 30px; text-align: center; font-size: 12px; color: #7d8b9a;">
+        Thank you for shopping in Aincrad!<br>
+        This is an official receipt for your purchase.
+    </div>
+</body>
+</html>

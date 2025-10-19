@@ -1,0 +1,113 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block extra_head %}
+        <link href="{% static 'css/news-carousel.css' %}" rel="stylesheet">
+        <link href="{% static 'css/category-list.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}{% trans "🌸 AnimeMarket - Your Gateway to Anime Treasures"%}{% endblock %}
+
+{% block content %}
+        <!-- News Carousel Section -->
+    <section id="news-carousel-container" class="news-carousel-container">
+        <div class="news-carousel">
+            <!-- News Card 1 -->
+
+            {% for n in news %}
+
+                <div class="news-card">
+                    <div class="news-card-header">
+                        <span class="news-date">{{ n.created }}</span>
+                        <a href="{{ n.category.get_absolute_url }}" class="clear-a"><span class="news-category">{{ n.category }}</span></a>
+                    </div>
+                    <h3 class="news-card-title">{{ n.title }}</h3>
+                    <p class="news-card-content">{{ n.description|truncatechars:30}}</p>
+                    <div class="news-card-footer">
+                        <a href="{{ n.get_absolute_url }}" class="news-read-more">{{ n.buttonText }}</a>
+                        <div class="news-tags">
+                            {% for tag in n.tags.all %}
+                            <span class="news-tag">#{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+
+
+        <!-- Navigation Arrows -->
+        <button class="carousel-nav-btn carousel-prev">◀</button>
+        <button class="carousel-nav-btn carousel-next">▶</button>
+
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button class="carousel-indicator active" data-index="0"></button>
+            <button class="carousel-indicator" data-index="1"></button>
+            <button class="carousel-indicator" data-index="2"></button>
+            <button class="carousel-indicator" data-index="3"></button>
+            <button class="carousel-indicator" data-index="4"></button>
+        </div>
+    </section>
+
+        <!-- Category Section -->
+        <section class="category-section">
+            <div class="category-container">
+                <div class="category-header">
+                    <div class="category-scroll">
+                        <h2>{% trans "Shop by Category" %}</h2>
+                        <p>{% trans "Discover your passion" %}</p>
+                    </div>
+                </div>
+
+                <div class="category-grid">
+                    <!-- Category Card 1 -->
+                    {% for c in categories %}
+                    <a href="{{ c.get_absolute_url }}">
+                        <div class="category-item">
+                            <div class="category-image">
+                                <img src="{% if c.photo %}{{ c.photo.url }}{% else %}{% static 'img/category_no_img.jpg' %}{% endif %}" alt="" class="item-detail-image"/>
+                                <div class="category-overlay"></div>
+                                <div class="category-icon">{{ c.icon }}</div>
+                            </div>
+                            <div class="category-content">
+                                <h3 class="category-title">{{ c.name }}</h3>
+                            </div>
+                            <div class="category-border"></div>
+                            <div class="category-sakura category-sakura-1">🌸</div>
+                            <div class="category-sakura category-sakura-2">🌸</div>
+                        </div>
+                    </a>
+                    {% endfor %}
+
+                <!-- Button learn more -->
+                <div class="text-center mt-12">
+                    <button class="wave-btn" onclick="handleLearnMore()">
+                        <a href="{% url 'shop:product_list' %}" style="text-style: none; text-decoration: none; color:white;"><span>{% trans "Learn More" %}</span></a>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+
+                <div class="category-wave">
+                    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                        <path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" fill="url(#waveGradient)" class="wave-pattern"/>
+                        <defs>
+                            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#FFB6C1" />
+                                <stop offset="50%" stop-color="#FFD1DC" />
+                                <stop offset="100%" stop-color="#FFB6C1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </section>
+{% endblock %}
+
+
+{% block extra_script %}
+    <script src="{% static 'js/news-carousel.js' %}"></script>
+    <script src="{% static 'js/category-list.js' %}"></script>
+{% endblock %}

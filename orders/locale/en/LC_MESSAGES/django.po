@@ -1,0 +1,178 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-13 15:39+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\orders\models.py:12
+msgid "first name"
+msgstr ""
+
+#: .\orders\models.py:14
+msgid "last name"
+msgstr ""
+
+#: .\orders\models.py:16
+msgid "email"
+msgstr ""
+
+#: .\orders\models.py:18
+msgid "address"
+msgstr ""
+
+#: .\orders\models.py:20
+msgid "postal code"
+msgstr ""
+
+#: .\orders\models.py:22
+msgid "city"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:5
+msgid "Checkout - Anime Market"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:15
+msgid "Checkout"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:19
+msgid "Cart"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:23
+msgid "Details"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:27
+msgid "Payment"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:31
+msgid "Complete"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:40
+msgid "Order Summary"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:55
+msgid "Items"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:64
+msgid "Subtotal"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:68
+msgid "Shipping"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:69
+msgid "FREE"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:75
+msgid "Discount"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:82
+msgid "Total"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:90
+msgid "Secure SSL Encryption"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:94
+msgid "Payment Protection"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:101
+msgid "Need Help?"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:102
+msgid "Our support team is here to help with your order."
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:123
+msgid "Personal Information"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:126
+msgid "First name"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:133
+msgid "Surname"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:137
+msgid "Email"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:145
+msgid "Shipping Address"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:148
+msgid "Address"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:152
+msgid "City"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:156
+msgid "Postal Code"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:168
+msgid "I agree to the"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:169
+msgid "Terms and Conditions"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:170
+msgid "and"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:171
+msgid "Privacy Policy"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:174
+msgid "This step is required"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:180
+msgid "Back to Cart"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:183
+msgid "Place Order"
+msgstr ""
+
+#: .\orders\templates\orders\order\create.html:195
+msgid "Processing your order..."
+msgstr ""
+
+#: .\orders\urls.py:8
+msgid "create/"
+msgstr ""

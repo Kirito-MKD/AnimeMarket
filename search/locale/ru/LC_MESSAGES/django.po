@@ -1,0 +1,115 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-12 12:17+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\search\templates\search.html:5
+msgid "Search Products"
+msgstr "Поиск товаров"
+
+#: .\search\templates\search.html:16
+msgid "Find Your Anime Treasures"
+msgstr "Найдите свои аниме-сокровища"
+
+#: .\search\templates\search.html:17
+msgid "Discover amazing anime products and events from our collection"
+msgstr ""
+"Откройте для себя удивительные аниме-товары и мероприятия из нашей коллекции"
+
+#: .\search\templates\search.html:26
+msgid "Search for figures, manga, events..."
+msgstr "Поиск фигурок, манги, мероприятий..."
+
+#: .\search\templates\search.html:32
+msgid "Search"
+msgstr "Поиск"
+
+#: .\search\templates\search.html:39
+msgid "All"
+msgstr "Все"
+
+#: .\search\templates\search.html:43
+msgid "Products"
+msgstr "Товары"
+
+#: .\search\templates\search.html:47
+msgid "Events"
+msgstr "Мероприятия"
+
+#: .\search\templates\search.html:69
+msgid "Search Results"
+msgstr "Результаты поиска"
+
+#: .\search\templates\search.html:71
+msgid "Found"
+msgstr "Найдено"
+
+#: .\search\templates\search.html:73
+msgid "results"
+msgstr "результатов"
+
+#: .\search\templates\search.html:86
+msgid "Product"
+msgstr "Товар"
+
+#: .\search\templates\search.html:102
+msgid "View Product"
+msgstr "Посмотреть товар"
+
+#: .\search\templates\search.html:110 .\search\templates\search_header.html:435
+msgid "Event"
+msgstr "Мероприятие"
+
+#: .\search\templates\search.html:126
+msgid "Event Details"
+msgstr "Подробнее о мероприятии"
+
+#: .\search\templates\search.html:143 .\search\templates\search_header.html:386
+msgid "No results found"
+msgstr "Ничего не найдено"
+
+#: .\search\templates\search.html:144
+msgid "Try different keywords or browse our categories"
+msgstr "Попробуйте другие ключевые слова или просмотрите наши категории"
+
+#: .\search\templates\search.html:146
+msgid "Browse All Products"
+msgstr "Просмотреть все товары"
+
+#: .\search\templates\search_header.html:10
+msgid "Search for something interesting..."
+msgstr "Поиск чего-нибудь интересного..."
+
+#: .\search\templates\search_header.html:380
+msgid "Error loading results"
+msgstr "Ошибка загрузки результатов"
+
+#: .\search\templates\search_header.html:427
+#: .\search\templates\search_header.html:448
+msgid "Click to view"
+msgstr "Нажмите для просмотра"
+
+#: .\search\templates\search_header.html:470
+msgid "View all results for"
+msgstr "Посмотреть все результаты для"
+
+#: .\search\templates\search_header.html:491
+msgid "No description available"
+msgstr "Описание отсутствует"

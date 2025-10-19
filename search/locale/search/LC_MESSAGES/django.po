@@ -1,0 +1,111 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-12 12:17+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\search\templates\search.html:5
+msgid "Search Products"
+msgstr ""
+
+#: .\search\templates\search.html:16
+msgid "Find Your Anime Treasures"
+msgstr ""
+
+#: .\search\templates\search.html:17
+msgid "Discover amazing anime products and events from our collection"
+msgstr ""
+
+#: .\search\templates\search.html:26
+msgid "Search for figures, manga, events..."
+msgstr ""
+
+#: .\search\templates\search.html:32
+msgid "Search"
+msgstr ""
+
+#: .\search\templates\search.html:39
+msgid "All"
+msgstr ""
+
+#: .\search\templates\search.html:43
+msgid "Products"
+msgstr ""
+
+#: .\search\templates\search.html:47
+msgid "Events"
+msgstr ""
+
+#: .\search\templates\search.html:69
+msgid "Search Results"
+msgstr ""
+
+#: .\search\templates\search.html:71
+msgid "Found"
+msgstr ""
+
+#: .\search\templates\search.html:73
+msgid "results"
+msgstr ""
+
+#: .\search\templates\search.html:86
+msgid "Product"
+msgstr ""
+
+#: .\search\templates\search.html:102
+msgid "View Product"
+msgstr ""
+
+#: .\search\templates\search.html:110 .\search\templates\search_header.html:435
+msgid "Event"
+msgstr ""
+
+#: .\search\templates\search.html:126
+msgid "Event Details"
+msgstr ""
+
+#: .\search\templates\search.html:143 .\search\templates\search_header.html:386
+msgid "No results found"
+msgstr ""
+
+#: .\search\templates\search.html:144
+msgid "Try different keywords or browse our categories"
+msgstr ""
+
+#: .\search\templates\search.html:146
+msgid "Browse All Products"
+msgstr ""
+
+#: .\search\templates\search_header.html:10
+msgid "Search for something interesting..."
+msgstr ""
+
+#: .\search\templates\search_header.html:380
+msgid "Error loading results"
+msgstr ""
+
+#: .\search\templates\search_header.html:427
+#: .\search\templates\search_header.html:448
+msgid "Click to view"
+msgstr ""
+
+#: .\search\templates\search_header.html:470
+msgid "View all results for"
+msgstr ""
+
+#: .\search\templates\search_header.html:491
+msgid "No description available"
+msgstr ""

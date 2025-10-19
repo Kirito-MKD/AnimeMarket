@@ -1,0 +1,361 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Payment - Aincrad Shop" %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/payment_process.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="payment-container">
+    <!-- Progress Bar -->
+    <div class="payment-progress">
+        <div class="progress-step completed">
+            <span class="step-number">1</span>
+            <span class="step-text">{% trans "Cart" %}</span>
+        </div>
+        <div class="progress-step completed">
+            <span class="step-number">2</span>
+            <span class="step-text">{% trans "Details" %}</span>
+        </div>
+        <div class="progress-step active">
+            <span class="step-number">3</span>
+            <span class="step-text">{% trans "Payment" %}</span>
+        </div>
+        <div class="progress-step">
+            <span class="step-number">4</span>
+            <span class="step-text">{% trans "Complete" %}</span>
+        </div>
+    </div>
+
+    <div class="payment-content">
+        <!-- Order Summary -->
+        <div class="order-summary-section">
+            <h2 class="section-title">📋 {% trans "Order Summary" %}</h2>
+
+            <!-- Customer Information -->
+            <div class="info-card">
+                <h3 class="info-title">👤 {% trans "Customer Information" %}</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">{% trans "Name" %}:</span>
+                        <span class="info-value">{{ order.first_name }} {{ order.last_name }}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">{% trans "Email" %}:</span>
+                        <span class="info-value">{{ order.email }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shipping Address -->
+            <div class="info-card">
+                <h3 class="info-title">🏠 {% trans "Shipping Address" %}</h3>
+                <div class="address-display">
+                    <p class="address-line">{{ order.address }}</p>
+                    <p class="address-line">{{ order.city }}, {{ order.postal_code }}</p>
+                </div>
+            </div>
+
+            <!-- Order Items -->
+            <div class="info-card">
+                <h3 class="info-title">📦 {% trans "Order Items" %}</h3>
+                <div class="order-items">
+                    {% for item in order.items.all %}
+                    <div class="order-item">
+                        <div class="item-image">
+                            {% if item.product.image %}
+                                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                            {% else %}
+                                <div class="image-placeholder">🌸</div>
+                            {% endif %}
+                        </div>
+                        <div class="item-info">
+                            <span class="item-name">{{ item.product.name }}</span>
+                            <span class="item-quantity">{% trans "Countity" %}: {{ item.quantity }}</span>
+                        </div>
+                        <span class="item-price">{{ item.get_cost|floatformat:2 }} $</span>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Order Total -->
+                <div class="order-total">
+                    <div class="total-row">
+                        <span>{% trans "Subtotal" %}</span>
+                        <span>{{ order.get_total_cost_before_discount|floatformat:2 }} $</span>
+                    </div>
+                    <div class="total-row">
+                        <span>{% trans "Shipping" %}</span>
+                        <span class="free-shipping">{% trans "FREE" %}</span>
+                    </div>
+                    <div class="total-row">
+                        <span>{% trans "Discount" %}</span>
+                        <span>{{ order.get_discount|floatformat:2 }} $</span>
+                    </div>
+                    <div class="total-row grand-total">
+                        <span>{% trans "Total" %}</span>
+                        <span class="total-amount">{{ order.get_total_cost|floatformat:2 }} $</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="payment-methods-section">
+            <h2 class="section-title">💳 {% trans "Select Payment Method" %}</h2>
+
+            <form method="post" class="payment-form" id="payment-form">
+                {% csrf_token %}
+
+                <!-- Credit Card -->
+                <div class="payment-method-card" data-method="credit_card">
+                    <label class="payment-option">
+                        <input type="radio" name="payment_method" value="credit_card" checked>
+                        <div class="payment-header">
+                            <span class="payment-icon">💳</span>
+                            <span class="payment-title">{% trans "Credit/Debit Card" %}</span>
+                            <div class="payment-badges">
+                                <span class="payment-badge">Visa</span>
+                                <span class="payment-badge">MasterCard</span>
+                                <span class="payment-badge">AMEX</span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Bank Transfer -->
+                <div class="payment-method-card" data-method="bank_transfer">
+                    <label class="payment-option">
+                        <input type="radio" name="payment_method" value="cash">
+                        <div class="payment-header">
+                            <span class="payment-icon">🏦</span>
+                            <span class="payment-title">{% trans "Cash" %}</span>
+                            <div class="payment-badges">
+                                <span class="payment-badge">Direct</span>
+                                <span class="payment-badge">Secure</span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+
+                <!-- Action Buttons -->
+                <div class="payment-actions">
+                    <a href="{% url 'orders:order_create' %}" class="btn-back">
+                        ← {% trans "Back to Details" %}
+                    </a>
+                    <button type="submit" class="btn-pay wave-btn" id="pay-btn">
+                        <span>💳 {% trans "Pay Now" %} {{ order.get_total_cost|floatformat:2 }} $</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loading-overlay">
+    <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <p>{% trans "Processing payment..." %}</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+    loadingOverlay = document.getElementById('loading-overlay');
+
+
+function updatePaymentForm(method) {
+        // Enable/disable form fields based on payment method
+        const cardFields = document.querySelectorAll('#card_number, #card_holder, #expiry_date, #cvv');
+
+        if (method === 'credit_card') {
+            cardFields.forEach(field => {
+                field.disabled = false;
+                field.required = true;
+            });
+        } else {
+            cardFields.forEach(field => {
+                field.disabled = true;
+                field.required = false;
+            });
+        }
+    }
+
+function togglePaymentMethod(method) {
+        // Remove active class from all methods
+        document.querySelectorAll('.payment-method-card').forEach(card => {
+            card.classList.remove('active');
+        });
+
+        // Add active class to selected method
+        const selectedCard = document.querySelector(`[data-method="${method}"]`);
+        if (selectedCard) {
+            selectedCard.classList.add('active');
+        }
+
+        // Show/hide relevant details
+        updatePaymentForm(method);
+    }
+
+function clearFieldError(field) {
+        field.style.borderColor = '#ffd1dc';
+
+        const existingError = field.parentNode.querySelector('.error-message');
+        if (existingError) {
+            existingError.remove();
+        }
+}
+
+function showFieldError(field, message) {
+        clearFieldError(field);
+
+        field.style.borderColor = '#f44336';
+
+        const errorElement = document.createElement('span');
+        errorElement.className = 'error-message';
+        errorElement.textContent = message;
+        errorElement.style.cssText = `
+            color: #f44336;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 5px;
+            display: block;
+        `;
+
+        field.parentNode.appendChild(errorElement);
+}
+
+
+
+function showLoading(show) {
+        if (loadingOverlay) {
+            loadingOverlay.style.display = show ? 'flex' : 'none';
+        }
+ }
+
+function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+        `;
+
+        if (type === 'success') {
+            notification.style.background = 'linear-gradient(135deg, #4CAF50 0%, #45a049 100%)';
+        } else {
+            notification.style.background = 'linear-gradient(135deg, #f44336 0%, #d32f2f 100%)';
+        }
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }, 3000);
+    }
+
+ function handlePayment(e) {
+        e.preventDefault();
+        const payBtn = document.getElementById('pay-btn');
+        const originalText = payBtn.innerHTML;
+
+        // Show loading state
+        showLoading(true);
+        payBtn.innerHTML = '⏳';
+        payBtn.disabled = true;
+
+        try {
+            // Simulate payment processing
+            new Promise(resolve => setTimeout(resolve, 3000));
+
+            // Simulate successful payment
+            showNotification('{% trans "Redirecting" %}...', 'success');
+
+            methods = document.getElementsByName('payment_method').forEach( input => {
+            console.log(input);
+                if (input.checked){
+                    console.log(input);
+                    if (input.value == 'credit_card'){
+                       // перенаправляем на платежную страницу stripe
+                       console.log('card');
+                       setTimeout(() => {
+                        e.target.submit()
+                        }, 1500);
+
+                    }
+                    else {
+                        // перенаправляем на страницу о том, что заказ успешно оформлен
+                        setTimeout(() => {
+                        window.location.href = '{% url "payment:completed" order.id %}';
+                        }, 1500);
+                }
+                }
+            })
+
+        } catch (error) {
+            showNotification('{% trans "Payment failed. Please try again." %}', 'error');
+            payBtn.innerHTML = originalText;
+            payBtn.disabled = false;
+        } finally {
+            showLoading(false);
+        }
+    }
+
+
+document.getElementsByName('payment_method').forEach( input => {
+
+    if (!input.checked){
+        parentDiv = input.closest('div')
+        parentDiv.classList.remove('payment-method-card')
+        parentDiv.classList.add('payment-method-card.active');
+    }
+
+    input.addEventListener('change', (e) => {
+        parentDiv = e.target.closest('div')
+        // добавляем активный клас
+        if (e.target.checked){
+            parentDiv.classList.remove('payment-method-card.active');
+            parentDiv.classList.add('payment-method-card');
+
+            const payBtn = document.getElementById('pay-btn');
+            if (e.target.value == 'credit_card'){
+                payBtn.textContent = '💳 {% trans "Pay Now" %} {{ order.get_total_cost|floatformat:2 }} $';
+            }
+            else if (e.target.value == 'cash'){
+                payBtn.textContent = '🏦 {% trans "Pay After Recieving " %}{{ order.get_total_cost|floatformat:2 }} $';
+            }
+
+
+        }
+        //удаляем у других radio активный класс
+        document.getElementsByName('payment_method').forEach(el => {
+            if (el !== e.target){
+                parentDiv = el.closest('div')
+                parentDiv.classList.add('payment-method-card.active');
+                parentDiv.classList.remove('payment-method-card');
+            }
+        })
+
+    })
+    })
+
+document.getElementById('payment-form').addEventListener('submit', handlePayment);
+</script>
+{% endblock %}

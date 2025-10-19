@@ -1,0 +1,208 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Order Success - Aincrad Shop{% endblock %}
+
+{% block extra_head %}
+<style>
+    :root {
+        --sao-blue: #64d8ff;
+        --sao-dark: #0a0e17;
+        --sao-green: #00e676;
+        --sao-gold: #ffd700;
+    }
+
+    body {
+        background-color: var(--sao-dark);
+        color: #f0f0f0;
+        font-family: 'Rajdhani', sans-serif;
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .success-container {
+        background: rgba(20, 30, 50, 0.9);
+        border: 2px solid var(--sao-green);
+        box-shadow: 0 0 30px rgba(0, 230, 118, 0.3);
+        padding: 40px;
+        max-width: 800px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .success-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+            linear-gradient(45deg,
+            transparent 48%,
+            rgba(0, 230, 118, 0.1) 49%,
+            rgba(0, 230, 118, 0.1) 51%,
+            transparent 52%);
+        background-size: 10px 10px;
+        animation: scanlines 3s linear infinite;
+        pointer-events: none;
+    }
+
+    h1 {
+        color: var(--sao-green);
+        font-size: 3rem;
+        margin-bottom: 20px;
+        text-shadow: 0 0 15px rgba(0, 230, 118, 0.5);
+    }
+
+    .success-icon {
+        font-size: 5rem;
+        color: var(--sao-green);
+        margin: 20px 0;
+        text-shadow: 0 0 20px rgba(0, 230, 118, 0.7);
+        animation: pulse 2s infinite;
+    }
+
+    .order-details {
+        background: rgba(30, 40, 60, 0.6);
+        border: 1px solid var(--sao-blue);
+        padding: 20px;
+        margin: 25px 0;
+        text-align: left;
+    }
+
+    .order-details p {
+        margin: 10px 0;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .order-details strong {
+        color: var(--sao-blue);
+    }
+
+    .btn-return {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 15px 40px;
+        background: linear-gradient(135deg, var(--sao-blue) 0%, #1e88e5 100%);
+        color: var(--sao-dark);
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 0 15px rgba(100, 216, 255, 0.4);
+    }
+
+    .btn-return:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 20px rgba(100, 216, 255, 0.6);
+    }
+
+    @keyframes scanlines {
+        from { background-position: 0 0; }
+        to { background-position: 0 20px; }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+
+    /* Эффект частиц */
+    .particles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .particle {
+        position: absolute;
+        background: var(--sao-green);
+        border-radius: 50%;
+        opacity: 0;
+        animation: float 5s infinite;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.5;
+        }
+        100% {
+            transform: translateY(-500px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="particles" id="particles"></div>
+
+<div class="success-container">
+    <h1>ORDER CONFIRMED</h1>
+    <div class="success-icon">✓</div>
+
+    <p>Your order has been successfully placed in Aincrad inventory system.</p>
+    <p>Transaction ID: <strong>{{ order.id }}</strong></p>
+    <a href="{% url 'shop:product_list' %}" class="btn-return">Return to Shop</a>
+</div>
+
+<script>
+    // Создание эффекта частиц
+    document.addEventListener('DOMContentLoaded', function() {
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 20;
+
+        for (let i = 0; i < particleCount; i++) {
+            createParticle();
+        }
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+
+            // Случайные параметры
+            const size = Math.random() * 5 + 2;
+            const posX = Math.random() * 100;
+            const delay = Math.random() * 5;
+            const duration = Math.random() * 3 + 3;
+
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${posX}%`;
+            particle.style.bottom = '0';
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.animationDuration = `${duration}s`;
+
+            particlesContainer.appendChild(particle);
+
+            // Повторное создание частицы после анимации
+            particle.addEventListener('animationend', function() {
+                particle.remove();
+                createParticle();
+            });
+        }
+    });
+</script>
+{% endblock %}

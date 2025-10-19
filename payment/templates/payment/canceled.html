@@ -1,0 +1,64 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Payment Failed" %}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/payment_failed.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="payment-failed-container">
+    <!-- Payment Failed Header -->
+    <div class="payment-header">
+        <h1 class="payment-title">❌ {% trans "Payment Failed" %}</h1>
+    </div>
+
+    <!-- Payment Failed Content -->
+    <div class="payment-content">
+        <div class="payment-icon">💔</div>
+        <h2>{% trans "We're sorry, your payment could not be processed" %}</h2>
+        <p>{% trans "There was an issue processing your payment. Please check your payment details and try again." %}</p>
+        
+        <div class="payment-actions">
+            <a href="{% url 'payment:process' %}" class="btn-retry">
+                🔄 {% trans "Try Again" %}
+            </a>
+            <a href="{% url 'shop:product_list' %}" class="btn-continue">
+                🏪 {% trans "Continue Shopping" %}
+            </a>
+        </div>
+        
+        <div class="payment-help">
+            <h3>{% trans "Need Help?" %}</h3>
+            <p>{% trans "If you continue to experience issues, please contact our support team." %}</p>
+            <a href="#" class="btn-support">
+                📞 {% trans "Contact Support" %}
+            </a>
+        </div>
+    </div>
+
+    <!-- Security Badges -->
+    <div class="security-badges">
+        <div class="badge-item">
+            <span class="badge-icon">🔒</span>
+            <span>{% trans "Secure Payment" %}</span>
+        </div>
+        <div class="badge-item">
+            <span class="badge-icon">🔄</span>
+            <span>{% trans "Easy Returns" %}</span>
+        </div>
+        <div class="badge-item">
+            <span class="badge-icon">🚚</span>
+            <span>{% trans "Fast Shipping" %}</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block domready %}
+// Add any JavaScript specific to payment failed page here
+console.log('Payment failed page loaded');
+{% endblock %}
+[file content end]

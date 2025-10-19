@@ -1,0 +1,138 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="min-h-screen bg-gradient-to-br from-white via-gray-50 to-pink-100 flex flex-col">
+
+    <!-- Main Content -->
+    <div class="relative z-10">
+        <!-- Navigation -->
+        <nav class="bg-white border-b-2 border-pink-300 shadow-lg relative">
+            <!-- Decorative wave pattern -->
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-300 via-pink-200 to-pink-300"></div>
+
+            <div class="anime-nav-container">
+    <div class="anime-nav-header">
+        <!-- Logo with torii gate inspiration -->
+        <div class="torii-logo">
+            <div class="torii-gate">
+                <a href="{% url 'shop:main_page' %}" class="clear-a"><h1>🌸 AnimeMarket</h1></a>
+            </div>
+        </div>
+        <!-- Desktop Navigation -->
+        <div class="anime-desktop-nav">
+
+                <form action="{% url 'shop:product_list' %}">
+                    <button class="anime-nav-btn {% if request.current_url_name == 'product_list' %}anime-nav-btn-select{% else %}''{% endif %}">
+                        <span class="nav-icon">📦</span>
+                        <span class="nav-text">{% trans "Shop Categories" %}</span>
+                    </button>
+                </form>
+            <form action="{% url 'events:event_list' %}">
+                <button class="anime-nav-btn {% if request.current_url_name == 'event_detail' %}anime-nav-btn-select{% else %}''{% endif %}">
+                    <span class="nav-icon">⚡</span>
+                    <span class="nav-text">{% trans "Events" %}</span>
+                </button>
+            </form>
+        </div>
+
+        {% include "search_header.html" %}
+
+        <!-- Cart and Mobile Menu -->
+        <div class="anime-nav-controls">
+            <form action="{% url 'cart:cart_detail' %}">
+                <button class="cart-btn" id="cart-btn">
+                    <div class="cart-icon">🛒</div>
+                    <span class="cart-count" id="cart-count">{{ cart.len }}</span>
+                </button>
+            </form>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <div class="menu-icon">☰</div>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+        {% block content %}
+        {% endblock %}
+        </nav>
+        <!-- Footer -->
+        <footer class="anime-footer" >
+    <div class="footer-container">
+
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h4>{% trans "Shop" %}</h4>
+                <ul class="footer-links">
+                    <li>{% trans "Figures & Collectibles" %}</li>
+                    <li>{% trans "Manga & Books" %}</li>
+                    <li>{% trans "Apparel & Cosplay" %}</li>
+                    <li>{% trans "Gaming & Tech" %}</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>{% trans "Customer Care" %}</h4>
+                <ul class="footer-links">
+                    <li>{% trans "Contact Us" %}</li>
+                    <li>{% trans "Shipping Info" %}</li>
+                    <li>{% trans "Returns" %}</li>
+                    <li>{% trans "FAQ" %}</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>{% trans "About" %}</h4>
+                <ul class="footer-links">
+                    <li>{% trans "Our Story" %}</li>
+                    <li>{% trans "Careers" %}</li>
+                    <li>{% trans "Press" %}</li>
+                    <li>{% trans "Blog" %}</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>{% trans "Connect" %}</h4>
+                <ul class="footer-links">
+                    <li>🐦 Twitter</li>
+                    <li>📸 Instagram</li>
+                    <li>📘 Facebook</li>
+                    <li>🎵 TikTok</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">{% trans "© 2024 AnimeMarket. Made with 💕 for anime lovers worldwide." %}</p>
+            <div class="footer-wave">
+                <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" class="wave-pattern"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</footer>
+    </div>
+       <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script>
+        const csrftoken = Cookies.get('csrftoken');
+        document.addEventListener('DOMContentLoaded', (event) => {
+            {% block domready %}
+            {% endblock %}
+         }
+        )
+    </script>
+    <script src="{% static 'js/app.js' %}"></script>
+
+    {% block extra_script %}
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+{% extends  "shop/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block extra_head %}
+    <link href="{% static 'css/product_list.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}{% trans "Products" %}{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="products-container">
+    <!-- Mobile Sidebar Toggle -->
+    <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle">
+        <span class="toggle-icon">▼</span>
+        {% trans "Filter Categories" %}
+    </button>
+
+    <!-- Mobile Filter Overlay -->
+    <div class="mobile-filter-overlay" id="mobile-filter-overlay">
+        <div class="mobile-sidebar-container">
+            <div class="mobile-sidebar-header">
+                <h3 class="mobile-sidebar-title">{% trans "Categories" %}</h3>
+                <button class="close-sidebar" id="close-sidebar">✕</button>
+            </div>
+            <div class="mobile-sidebar-content">
+                <ul class="category-list">
+                    <li class="category-item {% if not category %}selected{% endif %}">
+                        <a href="{% url 'shop:product_list' %}" class="category-link" data-mobile-link>
+                            {% trans "All Products" %}
+                        </a>
+                    </li>
+                    {% for c in categories %}
+                        <li class="category-item {% if category.slug == c.slug %}selected{% endif %}">
+                            <a href="{{ c.get_absolute_url }}" class="category-link" data-mobile-link>
+                                {{ c.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Desktop Sidebar -->
+    <aside class="products-sidebar">
+        <h3 class="sidebar-title">{% trans "Categories" %}</h3>
+        <ul class="category-list">
+            <li class="category-item {% if not category %}selected{% endif %}">
+                <a href="{% url 'shop:product_list' %}" class="category-link">
+                    {% trans "All Products" %}
+                </a>
+            </li>
+            {% for c in categories %}
+                <li class="category-item {% if category.slug == c.slug %}selected{% endif %}">
+                    <a href="{{ c.get_absolute_url }}" class="category-link">
+                        {{ c.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="products-main">
+        <div class="category-header">
+            <h1 class="category-title">
+                {% if category %}{{ category.name }}{% else %}{% trans "All Products" %}{% endif %}
+            </h1>
+        </div>
+
+        <div class="products-grid">
+            {% for product in products %}
+                <div class="product-card" data-category="{{ product.category.slug }}">
+                    <div class="product-image">
+                        <a href="{{ product.get_absolute_url }}">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                            {% else %}
+                                <div class="no-image">🌸</div>
+                            {% endif %}
+                        </a>
+                        <div class="product-overlay"></div>
+                    </div>
+
+                    <div class="product-content">
+                        <h3 class="product-name">
+                            <a href="{{ product.get_absolute_url }}" class="clear-a">{{ product.name }}</a>
+                        </h3>
+                        <div class="product-price">${{ product.price }}</div>
+                        <a href="{{ product.get_absolute_url }}" class="product-link">
+                            {% trans "View Details" %} →
+                        </a>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="empty-state">
+                    <div>🌸</div>
+                    <h3>{% trans "No products found" %}</h3>
+                    <p>{% trans "Check back later for new arrivals!" %}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block extra_script %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileToggle = document.getElementById('mobile-sidebar-toggle');
+    const mobileOverlay = document.getElementById('mobile-filter-overlay');
+    const closeSidebar = document.getElementById('close-sidebar');
+    const mobileLinks = document.querySelectorAll('[data-mobile-link]');
+    const mobileSidebarContainer = document.querySelector('.mobile-sidebar-container');
+
+    let isMobileMenuOpen = false;
+
+    // Toggle mobile sidebar
+    function openMobileMenu() {
+        mobileOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        isMobileMenuOpen = true;
+        mobileToggle.classList.add('active');
+    }
+
+    function closeMobileMenu() {
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        isMobileMenuOpen = false;
+        mobileToggle.classList.remove('active');
+    }
+
+    // Toggle mobile sidebar
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (!isMobileMenuOpen) {
+                openMobileMenu();
+            } else {
+                closeMobileMenu();
+            }
+        });
+    }
+
+    // Close mobile sidebar
+    if (closeSidebar) {
+        closeSidebar.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closeMobileMenu();
+        });
+    }
+
+    // Close sidebar when clicking on overlay (только на самом overlay)
+    if (mobileOverlay) {
+        mobileOverlay.addEventListener('click', function(e) {
+            if (e.target === mobileOverlay) {
+                closeMobileMenu();
+            }
+        });
+    }
+
+    // Предотвращаем закрытие при клике внутри sidebar
+    if (mobileSidebarContainer) {
+        mobileSidebarContainer.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    // Close sidebar after clicking on mobile link
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.stopPropagation();
+            setTimeout(() => {
+                closeMobileMenu();
+            }, 100);
+        });
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isMobileMenuOpen) {
+            closeMobileMenu();
+        }
+    });
+
+    // Touch device optimizations
+    if ('ontouchstart' in window) {
+        // Add touch feedback
+        const productCards = document.querySelectorAll('.product-card');
+        const productLinks = document.querySelectorAll('.product-link');
+        
+        productCards.forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            
+            card.addEventListener('touchend', function() {
+                this.style.transform = '';
+            });
+        });
+
+        productLinks.forEach(link => {
+            link.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.95)';
+            });
+            
+            link.addEventListener('touchend', function() {
+                this.style.transform = '';
+            });
+        });
+
+        // Prevent zoom on double tap
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    }
+
+    // Lazy loading for images
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+
+    // Ensure main content is clickable when menu is closed
+    const mainContent = document.querySelector('.products-main');
+    if (mainContent) {
+        mainContent.style.pointerEvents = 'auto';
+    }
+});
+</script>
+{% endblock %}

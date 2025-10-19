@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-12 08:48+0300\n"
+"PO-Revision-Date: 2025-10-02 16:41+0000\n"
+"Last-Translator:   <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: .\event\models.py:37
+msgid "Read more"
+msgstr "Читать подробнее"
+
+#: .\event\templates\event_detail.html:22 .\event\templates\events_list.html:13
+#: .\event\templates\events_list.html:20
+msgid "Events"
+msgstr "События"
+
+#: .\event\templates\event_detail.html:45
+msgid "Upcoming"
+msgstr "Предстоящие"
+
+#: .\event\templates\event_detail.html:47
+msgid "Ongoing"
+msgstr "Идет прямо сейчас"
+
+#: .\event\templates\event_detail.html:49
+msgid "Completed"
+msgstr "Завершилось"
+
+#: .\event\templates\event_detail.html:61
+msgid "Register Now"
+msgstr "Зарегистрироваться прямо сейчас "
+
+#: .\event\templates\event_detail.html:65
+msgid "Share"
+msgstr "Поделиться"
+
+#: .\event\templates\event_detail.html:69
+msgid "Save"
+msgstr "Сохранить"
+
+#: .\event\templates\event_detail.html:80
+msgid "About this Event"
+msgstr "Об этом событии"
+
+#: .\event\templates\event_detail.html:88
+msgid "Event Highlights"
+msgstr "Важные моменты"
+
+#: .\event\templates\event_detail.html:102
+msgid "Featured Speakers"
+msgstr "Докладчики"
+
+#: .\event\templates\event_detail.html:123
+#, fuzzy
+#| msgid "Events"
+msgid "Event Details"
+msgstr "События"
+
+#: .\event\templates\event_detail.html:125
+msgid "Date"
+msgstr "Дата"
+
+#: .\event\templates\event_detail.html:133
+msgid "Time"
+msgstr "Время"
+
+#: .\event\templates\event_detail.html:143
+msgid "Location"
+msgstr "Место проведения"
+
+#: .\event\templates\event_detail.html:148
+msgid "Seats"
+msgstr "Места"
+
+#: .\event\templates\event_detail.html:149
+msgid "available"
+msgstr "доступно"
+
+#: .\event\templates\event_detail.html:154
+msgid "Price"
+msgstr "Цена"
+
+#: .\event\templates\event_detail.html:159
+msgid "Free"
+msgstr "Бесплатно"
+
+#: .\event\templates\event_detail.html:167
+msgid "Contact Info"
+msgstr "Контактная информация"
+
+#: .\event\templates\event_detail.html:180
+msgid "Location Map"
+msgstr "Карта"
+
+#: .\event\templates\event_detail.html:192
+msgid "You might also like"
+msgstr "Вам может также приглянуться"
+
+#: .\event\templates\event_detail.html:207
+msgid "View Details"
+msgstr "Посмотреть детали"
+
+#: .\event\templates\event_detail.html:220
+msgid "Register for Event"
+msgstr "Записать на событие"
+
+#: .\event\templates\event_detail.html:223
+msgid "Full Name"
+msgstr "ФИО"
+
+#: .\event\templates\event_detail.html:227
+msgid "Email"
+msgstr "Email"
+
+#: .\event\templates\event_detail.html:231
+msgid "Phone Number"
+msgstr "Номер телефона"
+
+#: .\event\templates\event_detail.html:235
+msgid "Number of Guests"
+msgstr "Число гостей"
+
+#: .\event\templates\event_detail.html:237
+msgid "person"
+msgstr "человек "
+
+#: .\event\templates\event_detail.html:238
+#: .\event\templates\event_detail.html:239
+#: .\event\templates\event_detail.html:240
+msgid "people"
+msgstr "люди"
+
+#: .\event\templates\event_detail.html:244
+msgid "Complete Registration"
+msgstr "Завершить регистрацию"
+
+#: .\event\templates\events_list.html:24 .\event\templates\events_list.html:41
+msgid "All Events"
+msgstr "Все события"
+
+#: .\event\templates\events_list.html:64
+msgid "No Events found"
+msgstr "Никаких событий нет"
+
+#: .\event\templates\events_list.html:65
+msgid "Check back later for new events!"
+msgstr "Следите за новыми событиями!"
